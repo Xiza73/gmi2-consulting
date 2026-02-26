@@ -51,7 +51,8 @@
 }
 
 .laptop-3d-wrapper.laptop-closed {
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5))
+          drop-shadow(0 3px 8px rgba(0, 0, 0, 0.3));
 }
 
 /* ── Lid ── */
@@ -152,45 +153,45 @@
   background: #000;
 }
 
-/* ── Base — front profile wedge (MacBook-style thin chassis) ── */
+/* ── Base — front profile (MacBook-style chassis) ── */
 
 .laptop-base {
   position: relative;
   z-index: 1;
 }
 
-/* Top edge — the thin visible surface where hinge meets base */
+/* Top edge — visible surface where lid meets base (hinge area) */
 .laptop-base-top-edge {
-  height: 4px;
+  height: 5px;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.05) 0%,
     #283548 100%
   );
   border-left: 1px solid rgba(255, 255, 255, 0.08);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Front face — the main visible aluminum face */
+/* Front face — main aluminum face of the base chassis */
 .laptop-base-front {
-  height: 10px;
+  height: 18px;
   background: linear-gradient(
     180deg,
     #2a3648 0%,
-    #1e2d3d 40%,
+    #22303f 30%,
+    #1e2d3d 60%,
     #1a2535 100%
   );
   border-left: 1px solid rgba(255, 255, 255, 0.08);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
-  /* Subtle inner highlight for aluminum feel */
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
 /* Bottom edge — rounded lip at the base */
 .laptop-base-bottom-edge {
-  height: 6px;
+  height: 8px;
   background: linear-gradient(
     180deg,
     #1a2535 0%,
@@ -199,7 +200,20 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-top: none;
   border-radius: 0 0 0.5rem 0.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Closed state — seam line between lid and base */
+.laptop-3d-wrapper.laptop-closed .laptop-base-top-edge {
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.laptop-3d-wrapper.laptop-closed .laptop-base-top-edge::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 /* ── Toggle Button ── */
@@ -247,9 +261,9 @@
   .laptop-bezel-bottom { height: 8px; }
   .laptop-screen-content { margin: 0 2px; }
 
-  .laptop-base-front { height: 8px; }
-  .laptop-base-top-edge { height: 3px; }
-  .laptop-base-bottom-edge { height: 4px; }
+  .laptop-base-front { height: 14px; }
+  .laptop-base-top-edge { height: 4px; }
+  .laptop-base-bottom-edge { height: 6px; }
 }
 
 /* Dashboard Cards */
