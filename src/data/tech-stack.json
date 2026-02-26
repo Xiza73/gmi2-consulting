@@ -1,0 +1,14 @@
+[
+  { "id": "tech-react", "name": "React", "category": "frontend" },
+  { "id": "tech-nextjs", "name": "Next.js", "category": "frontend" },
+  { "id": "tech-typescript", "name": "TypeScript", "category": "language" },
+  { "id": "tech-nodejs", "name": "Node.js", "category": "backend" },
+  { "id": "tech-nestjs", "name": "NestJS", "category": "backend" },
+  { "id": "tech-python", "name": "Python", "category": "backend" },
+  { "id": "tech-postgresql", "name": "PostgreSQL", "category": "database" },
+  { "id": "tech-mongodb", "name": "MongoDB", "category": "database" },
+  { "id": "tech-aws", "name": "AWS", "category": "cloud" },
+  { "id": "tech-docker", "name": "Docker", "category": "devops" },
+  { "id": "tech-kubernetes", "name": "Kubernetes", "category": "devops" },
+  { "id": "tech-flutter", "name": "Flutter", "category": "mobile" }
+]

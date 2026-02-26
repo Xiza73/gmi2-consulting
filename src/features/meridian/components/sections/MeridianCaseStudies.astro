@@ -1,0 +1,87 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+
+const cases = [
+  {
+    title: 'Plataforma SaaS de Gestion',
+    category: 'SaaS Product',
+    description: 'Diseño y desarrollo de una plataforma de gestion empresarial que automatizo el 80% de los procesos operativos del cliente.',
+    metrics: ['3 meses de desarrollo', '80% procesos automatizados', '10k+ usuarios activos'],
+    color: 'from-blue-500 to-indigo-600',
+  },
+  {
+    title: 'App Movil de Fintech',
+    category: 'Mobile App',
+    description: 'Aplicacion movil cross-platform para una fintech que proceso mas de $50M en transacciones en su primer anio.',
+    metrics: ['React Native', '$50M+ transacciones', '4.8 App Store rating'],
+    color: 'from-emerald-500 to-teal-600',
+  },
+  {
+    title: 'Migracion Cloud Enterprise',
+    category: 'Cloud Architecture',
+    description: 'Migracion completa de infraestructura on-premise a AWS con zero downtime y 40% de reduccion en costos.',
+    metrics: ['Zero downtime', '40% ahorro', '99.99% uptime'],
+    color: 'from-orange-500 to-red-500',
+  },
+  {
+    title: 'Dashboard de Analytics',
+    category: 'Full-Stack Development',
+    description: 'Dashboard de analytics en tiempo real procesando millones de eventos diarios con visualizaciones interactivas.',
+    metrics: ['Real-time processing', '5M+ events/dia', 'Sub-second latency'],
+    color: 'from-violet-500 to-purple-600',
+  },
+];
+---
+
+<Section id="cases" padding="lg" class="overflow-hidden">
+  <Container>
+    <div class="text-center mb-16">
+      <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest text-blue-600 mb-4 font-medium" data-reveal-y="30">
+        Casos de Exito
+      </p>
+      <h2 class="scroll-reveal opacity-0 text-4xl md:text-5xl font-bold text-slate-900" data-reveal-y="30" data-reveal-delay="0.1">
+        Proyectos destacados
+      </h2>
+    </div>
+  </Container>
+
+  <Container>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {cases.map((item, i) => (
+        <div
+          class="scroll-reveal opacity-0 group"
+          data-reveal-y="30"
+          data-reveal-delay={String(i * 0.1)}
+        >
+          <div class="meridian-card h-full overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+            <!-- Color Bar -->
+            <div class={`h-1.5 bg-gradient-to-r ${item.color} transition-all duration-500 group-hover:h-2`}></div>
+
+            <div class="p-8">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs uppercase tracking-widest text-blue-600 font-semibold">{item.category}</span>
+                <span class="text-slate-300 font-black text-2xl select-none group-hover:text-blue-100 transition-colors duration-300">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300">
+                {item.title}
+              </h3>
+              <p class="text-slate-500 text-sm leading-relaxed mb-6">{item.description}</p>
+
+              <div class="flex flex-wrap gap-2">
+                {item.metrics.map((metric) => (
+                  <span class="px-3 py-1.5 text-xs font-medium bg-slate-50 text-slate-600 rounded-full border border-slate-100 group-hover:bg-blue-50 group-hover:text-blue-700 group-hover:border-blue-100 transition-colors duration-300">
+                    {metric}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

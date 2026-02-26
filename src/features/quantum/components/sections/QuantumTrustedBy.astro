@@ -1,0 +1,24 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import clients from '@/data/clients.json';
+---
+
+<Section padding="md">
+  <Container>
+    <p class="text-center text-sm uppercase tracking-widest text-white/30 mb-10">
+      Empresas que confian en nosotros
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16" data-stagger-grid>
+      {clients.map((client) => (
+        <div
+          class="text-white/20 hover:text-white/50 transition-colors duration-300 text-lg font-bold tracking-wider"
+          data-stagger-item
+        >
+          {client.name}
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

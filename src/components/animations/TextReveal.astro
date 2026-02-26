@@ -1,0 +1,13 @@
+---
+interface Props {
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span';
+  class?: string;
+  splitType?: 'chars' | 'words';
+}
+
+const { as: Tag = 'h2', class: className = '', splitType = 'words' } = Astro.props;
+---
+
+<Tag class:list={['text-reveal opacity-0', className]} data-split-type={splitType}>
+  <slot />
+</Tag>

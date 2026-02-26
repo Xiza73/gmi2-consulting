@@ -1,0 +1,45 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+  type?: 'button' | 'submit';
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  class: className = '',
+  type = 'button',
+} = Astro.props;
+
+const variantMap = {
+  primary: 'bg-primary-600 text-white hover:bg-primary-700 shadow-lg shadow-primary-600/25',
+  secondary: 'bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm border border-white/20',
+  outline: 'border-2 border-current hover:bg-current/10',
+  ghost: 'hover:bg-white/10',
+};
+
+const sizeMap = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg',
+};
+
+const baseClasses = 'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-300 cursor-pointer';
+const classes = `${baseClasses} ${variantMap[variant]} ${sizeMap[size]} ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} class={classes} data-astro-prefetch>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes}>
+      <slot />
+    </button>
+  )
+}

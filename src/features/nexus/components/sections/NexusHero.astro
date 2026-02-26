@@ -1,0 +1,121 @@
+---
+import LiquidBlob from '../three/LiquidBlob';
+import Badge from '@components/ui/Badge.astro';
+import Button from '@components/ui/Button.astro';
+---
+
+<section class="relative min-h-screen flex items-center overflow-hidden">
+  <!-- 3D Background: Liquid Blob -->
+  <div class="absolute inset-0 -z-10">
+    <LiquidBlob client:only="react" />
+  </div>
+
+  <!-- Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a1a]/60 via-[#0a0a1a]/40 to-[#0a0a1a] pointer-events-none z-[1]"></div>
+
+  <!-- Content -->
+  <div class="relative z-[2] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+    <div class="max-w-3xl">
+      <Badge variant="primary" class="hero-eyebrow opacity-0 mb-6 !bg-sky-500/10 !text-sky-400 !border-sky-500/20">
+        Plataforma SaaS
+      </Badge>
+
+      <h1 class="hero-title opacity-0 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[0.95]">
+        Construimos tu
+        <span class="block bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-cyan-400 to-sky-300">
+          Producto SaaS
+        </span>
+      </h1>
+
+      <p class="hero-description opacity-0 mt-8 text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed">
+        Desde la idea hasta el lanzamiento. Dashboards interactivos, plataformas multi-tenant,
+        analytics en tiempo real y arquitectura cloud-native.
+      </p>
+
+      <div class="hero-cta opacity-0 mt-10 flex flex-wrap gap-4">
+        <Button variant="primary" size="lg" href="#contact" class="!bg-sky-600 hover:!bg-sky-700 !shadow-sky-600/25">
+          Iniciar Proyecto
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </Button>
+        <Button variant="secondary" size="lg" href="#dashboard">
+          Ver Demo
+        </Button>
+      </div>
+    </div>
+
+    <!-- Mini Dashboard Preview Teaser -->
+    <div class="hero-preview opacity-0 mt-16 max-w-2xl">
+      <div class="rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm p-4 shadow-2xl">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-2.5 h-2.5 rounded-full bg-red-400/60"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-yellow-400/60"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-green-400/60"></div>
+          <span class="ml-2 text-[10px] text-white/30 font-mono">analytics-dashboard.app</span>
+        </div>
+        <div class="grid grid-cols-4 gap-2">
+          <div class="h-12 rounded bg-sky-500/10 flex items-center justify-center">
+            <div class="text-center">
+              <p class="text-[10px] text-white/30">Revenue</p>
+              <p class="text-xs font-bold text-sky-400">$124k</p>
+            </div>
+          </div>
+          <div class="h-12 rounded bg-cyan-500/10 flex items-center justify-center">
+            <div class="text-center">
+              <p class="text-[10px] text-white/30">Users</p>
+              <p class="text-xs font-bold text-cyan-400">8.2k</p>
+            </div>
+          </div>
+          <div class="h-12 rounded bg-emerald-500/10 flex items-center justify-center">
+            <div class="text-center">
+              <p class="text-[10px] text-white/30">Growth</p>
+              <p class="text-xs font-bold text-emerald-400">+24%</p>
+            </div>
+          </div>
+          <div class="h-12 rounded bg-violet-500/10 flex items-center justify-center">
+            <div class="text-center">
+              <p class="text-[10px] text-white/30">Conv.</p>
+              <p class="text-xs font-bold text-violet-400">3.2%</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2 h-16 rounded bg-white/[0.02] border border-white/5 flex items-end px-2 pb-1 gap-[3px]">
+          {[35, 45, 30, 55, 48, 62, 58, 72, 65, 80, 75, 90, 85, 95, 88, 78, 92, 98, 85, 105].map((h) => (
+            <div class="flex-1 rounded-t bg-gradient-to-t from-sky-500/40 to-sky-400/20" style={`height: ${h * 0.14}px`}></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 z-[2]">
+    <span class="text-xs text-white/50 uppercase tracking-widest">Scroll</span>
+    <div class="w-px h-8 bg-gradient-to-b from-white/50 to-transparent animate-pulse"></div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+
+  function initNexusHero() {
+    const hero = document.querySelector('.hero-title');
+    if (!hero) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set('.hero-eyebrow, .hero-title, .hero-description, .hero-cta, .hero-preview', { opacity: 1 });
+      return;
+    }
+
+    const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+    tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.6 }, 0.3)
+      .to('.hero-title', { opacity: 1, y: 0, duration: 1 }, 0.5)
+      .to('.hero-description', { opacity: 1, y: 0, duration: 0.8 }, 0.9)
+      .to('.hero-cta', { opacity: 1, y: 0, duration: 0.8 }, 1.1)
+      .to('.hero-preview', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, 1.4);
+  }
+
+  document.addEventListener('astro:page-load', initNexusHero);
+</script>

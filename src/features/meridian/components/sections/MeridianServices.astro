@@ -1,0 +1,42 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import services from '@/data/services.json';
+---
+
+<Section id="services" padding="lg" class="bg-slate-50">
+  <Container>
+    <div class="text-center mb-16">
+      <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest text-blue-600 mb-4 font-medium" data-reveal-y="30">
+        Servicios
+      </p>
+      <h2 class="scroll-reveal opacity-0 text-4xl md:text-5xl font-bold text-slate-900" data-reveal-y="30" data-reveal-delay="0.1">
+        Que hacemos
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger-grid>
+      {services.map((service) => (
+        <div class="meridian-card p-8 h-full" data-stagger-item>
+          <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-6">
+            <span class="text-blue-600 font-bold text-lg">{service.title.charAt(0)}</span>
+          </div>
+
+          <h3 class="text-xl font-semibold text-slate-900 mb-3">{service.title}</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">{service.description}</p>
+
+          <ul class="space-y-2">
+            {service.features.map((feature) => (
+              <li class="flex items-center gap-2 text-sm text-slate-400">
+                <svg class="w-4 h-4 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

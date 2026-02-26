@@ -1,11 +1,128 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Container from '@components/layout/Container.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const options = [
+  {
+    name: 'Quantum',
+    subtitle: 'Dark + Futurista',
+    description: 'Fondo oscuro, gradientes neon, particulas 3D y poliedros flotantes. Animaciones de split text, scroll-scrub y glassmorphism.',
+    href: '/quantum',
+    gradient: 'from-indigo-500 via-violet-500 to-cyan-500',
+    bgHover: 'hover:border-indigo-500/50 hover:shadow-indigo-500/10',
+    textAccent: 'text-indigo-400',
+  },
+  {
+    name: 'Meridian',
+    subtitle: 'Clean + Corporativo',
+    description: 'Fondo blanco, tipografia elegante, globo 3D con conexiones. Reveals suaves, horizontal scroll y diseño profesional.',
+    href: '/meridian',
+    gradient: 'from-blue-500 via-sky-500 to-indigo-500',
+    bgHover: 'hover:border-blue-500/50 hover:shadow-blue-500/10',
+    textAccent: 'text-blue-400',
+  },
+  {
+    name: 'Prism',
+    subtitle: 'Bold + Colorido',
+    description: 'Gradientes vibrantes, blob 3D iridiscente, marquee infinito. Animaciones elasticas, flip cards y tipografia black.',
+    href: '/prism',
+    gradient: 'from-pink-500 via-orange-500 to-yellow-500',
+    bgHover: 'hover:border-pink-500/50 hover:shadow-pink-500/10',
+    textAccent: 'text-pink-400',
+  },
+  {
+    name: 'Nexus',
+    subtitle: 'SaaS + Dashboard',
+    description: 'Dashboard interactivo en laptop frame, blob liquido metalico 3D, pricing, graficos SVG animados y estetica SaaS premium.',
+    href: '/nexus',
+    gradient: 'from-sky-500 via-cyan-500 to-sky-400',
+    bgHover: 'hover:border-sky-500/50 hover:shadow-sky-500/10',
+    textAccent: 'text-sky-400',
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="GMI2 Consulting — Landing Page Options"
+  description="Elige entre 4 opciones de landing page profesionales para GMI2 Consulting."
+  bodyClass="bg-[#030014]"
+>
+  <div class="min-h-screen flex flex-col items-center justify-center px-4 py-20">
+    <Container size="lg">
+      <!-- Header -->
+      <div class="text-center mb-16 selector-header opacity-0">
+        <p class="text-sm uppercase tracking-widest text-primary-400 mb-4 font-medium">
+          GMI2 Consulting
+        </p>
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+          Elige tu Landing Page
+        </h1>
+        <p class="text-lg text-white/40 max-w-xl mx-auto">
+          4 opciones de diseño profesional.
+        </p>
+      </div>
+
+      <!-- Options Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="options-grid">
+        {options.map((option) => (
+          <a
+            href={option.href}
+            class:list={[
+              'selector-card opacity-0 group block rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl backdrop-blur-sm',
+              option.bgHover,
+            ]}
+            data-astro-prefetch
+          >
+            <!-- Gradient Bar -->
+            <div class:list={['h-1.5 w-16 rounded-full bg-gradient-to-r mb-6', option.gradient]}></div>
+
+            <!-- Title -->
+            <h2 class="text-2xl font-bold text-white mb-1 group-hover:translate-x-1 transition-transform">
+              {option.name}
+            </h2>
+            <p class:list={['text-sm font-medium mb-4', option.textAccent]}>
+              {option.subtitle}
+            </p>
+
+            <!-- Description -->
+            <p class="text-sm text-white/40 leading-relaxed mb-8">
+              {option.description}
+            </p>
+
+            <!-- CTA -->
+            <div class="flex items-center gap-2 text-sm font-medium text-white/60 group-hover:text-white transition-colors">
+              Ver Landing
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </Container>
+  </div>
+
+  <script>
+    import gsap from 'gsap';
+
+    function initSelector() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.set('.selector-header, .selector-card', { opacity: 1 });
+        return;
+      }
+
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+      tl.to('.selector-header', { opacity: 1, y: 0, duration: 0.8 }, 0.2)
+        .to('.selector-card', {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'back.out(1.7)',
+        }, 0.5);
+    }
+
+    document.addEventListener('astro:page-load', initSelector);
+  </script>
+</BaseLayout>

@@ -1,0 +1,39 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import testimonials from '@/data/testimonials.json';
+---
+
+<Section padding="lg" class="bg-slate-50">
+  <Container>
+    <div class="text-center mb-16">
+      <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest text-blue-600 mb-4 font-medium" data-reveal-y="30">
+        Testimonios
+      </p>
+      <h2 class="scroll-reveal opacity-0 text-4xl md:text-5xl font-bold text-slate-900" data-reveal-y="30" data-reveal-delay="0.1">
+        Lo que dicen nuestros clientes
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger-grid>
+      {testimonials.slice(0, 3).map((t) => (
+        <div class="meridian-card p-8" data-stagger-item>
+          <!-- Large Quote -->
+          <span class="text-6xl text-blue-200 font-serif leading-none block mb-4">"</span>
+
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">{t.quote}</p>
+
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm">
+              {t.author.split(' ').map((n: string) => n[0]).join('')}
+            </div>
+            <div>
+              <p class="text-sm font-medium text-slate-900">{t.author}</p>
+              <p class="text-xs text-slate-400">{t.role} — {t.company}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

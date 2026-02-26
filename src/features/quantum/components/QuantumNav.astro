@@ -1,0 +1,26 @@
+---
+import Container from '@components/layout/Container.astro';
+---
+
+<nav class="quantum-nav fixed top-0 left-0 right-0 z-50" transition:persist>
+  <Container>
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <a href="/quantum" class="text-xl font-bold tracking-tight text-white">
+        GMI<span class="text-primary-400">2</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#services" class="text-sm text-white/70 hover:text-white transition-colors">Servicios</a>
+        <a href="#process" class="text-sm text-white/70 hover:text-white transition-colors">Proceso</a>
+        <a href="#tech" class="text-sm text-white/70 hover:text-white transition-colors">Tecnologias</a>
+        <a href="#testimonials" class="text-sm text-white/70 hover:text-white transition-colors">Testimonios</a>
+        <a
+          href="#contact"
+          class="px-5 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
+        >
+          Contactar
+        </a>
+      </div>
+    </div>
+  </Container>
+</nav>

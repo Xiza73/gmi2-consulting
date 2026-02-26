@@ -1,0 +1,60 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import NexusDashboardApp from './NexusDashboardApp';
+---
+
+<Section id="dashboard" padding="lg">
+  <Container>
+    <!-- Laptop Frame -->
+    <div class="scroll-reveal opacity-0 max-w-6xl mx-auto" data-reveal-y="40" data-reveal-delay="0.1">
+      <!-- Screen -->
+      <div class="laptop-screen relative overflow-hidden">
+        <!-- Camera notch -->
+        <div class="flex justify-center">
+          <div class="laptop-notch w-20 h-4 flex items-center justify-center">
+            <div class="w-2 h-2 rounded-full bg-white/10"></div>
+          </div>
+        </div>
+
+        <!-- Dashboard Content (React Island) -->
+        <NexusDashboardApp client:visible />
+      </div>
+
+      <!-- Keyboard Base -->
+      <div class="laptop-base h-5 md:h-7 flex items-center justify-center">
+        <div class="w-16 md:w-24 h-1 rounded-full bg-white/10"></div>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initDashboardReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set('#dashboard .scroll-reveal', { opacity: 1 });
+      return;
+    }
+
+    gsap.utils.toArray<HTMLElement>('#dashboard .scroll-reveal').forEach((el) => {
+      const y = parseInt(el.dataset.revealY || '30');
+      const delay = parseFloat(el.dataset.revealDelay || '0');
+
+      gsap.fromTo(el,
+        { opacity: 0, y },
+        {
+          opacity: 1, y: 0, duration: 1, delay,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        }
+      );
+    });
+  }
+
+  document.addEventListener('astro:page-load', initDashboardReveal);
+</script>

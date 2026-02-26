@@ -1,0 +1,24 @@
+---
+import Container from '@components/layout/Container.astro';
+---
+
+<footer class="border-t border-white/5 py-12">
+  <Container>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-xl font-bold tracking-tight text-white">
+        GMI<span class="text-primary-400">2</span>
+        <span class="text-sm font-normal text-white/30 ml-2">Consulting</span>
+      </div>
+
+      <div class="flex items-center gap-8">
+        <a href="#services" class="text-sm text-white/40 hover:text-white/70 transition-colors">Servicios</a>
+        <a href="#process" class="text-sm text-white/40 hover:text-white/70 transition-colors">Proceso</a>
+        <a href="#testimonials" class="text-sm text-white/40 hover:text-white/70 transition-colors">Testimonios</a>
+      </div>
+
+      <p class="text-xs text-white/20">
+        &copy; {new Date().getFullYear()} GMI2 Consulting. Todos los derechos reservados.
+      </p>
+    </div>
+  </Container>
+</footer>

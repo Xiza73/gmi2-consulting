@@ -1,0 +1,22 @@
+---
+interface Props {
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'span' | 'p';
+  from?: string;
+  to?: string;
+  class?: string;
+}
+
+const {
+  as: Tag = 'span',
+  from = '#6366f1',
+  to = '#8b5cf6',
+  class: className = '',
+} = Astro.props;
+---
+
+<Tag
+  class:list={['bg-clip-text text-transparent', className]}
+  style={`background-image: linear-gradient(135deg, ${from}, ${to});`}
+>
+  <slot />
+</Tag>

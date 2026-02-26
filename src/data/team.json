@@ -1,0 +1,30 @@
+[
+  {
+    "id": "team-1",
+    "name": "Gabriel Martinez",
+    "role": "Founder & Lead Architect",
+    "bio": "15+ anios de experiencia en arquitectura de software y liderazgo tecnico. Apasionado por construir productos que escalan.",
+    "social": { "linkedin": "#", "github": "#" }
+  },
+  {
+    "id": "team-2",
+    "name": "Isabella Chen",
+    "role": "Senior Full-Stack Engineer",
+    "bio": "Especialista en React, Node.js y sistemas distribuidos. Contribuidora activa en proyectos open source.",
+    "social": { "linkedin": "#", "github": "#" }
+  },
+  {
+    "id": "team-3",
+    "name": "David Ramirez",
+    "role": "Cloud & DevOps Lead",
+    "bio": "Certificado en AWS y Azure. Experto en Kubernetes, CI/CD y arquitecturas serverless.",
+    "social": { "linkedin": "#", "github": "#" }
+  },
+  {
+    "id": "team-4",
+    "name": "Sofia Alvarez",
+    "role": "Product Designer & UX Lead",
+    "bio": "Disenadora con enfoque en productos digitales. Combina investigacion de usuario con diseno visual de alto impacto.",
+    "social": { "linkedin": "#", "github": "#" }
+  }
+]

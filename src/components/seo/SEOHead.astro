@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  publishedDate?: Date;
+  modifiedDate?: Date;
+}
+
+const {
+  title,
+  description,
+  image = '/og-default.png',
+  type = 'website',
+  noindex = false,
+  publishedDate,
+  modifiedDate,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site);
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:site_name" content="GMI2 Consulting" />
+<meta property="og:locale" content="es_ES" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageURL} />
+
+{publishedDate && <meta property="article:published_time" content={publishedDate.toISOString()} />}
+{modifiedDate && <meta property="article:modified_time" content={modifiedDate.toISOString()} />}

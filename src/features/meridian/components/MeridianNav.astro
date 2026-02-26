@@ -1,0 +1,26 @@
+---
+import Container from '@components/layout/Container.astro';
+---
+
+<nav class="meridian-nav fixed top-0 left-0 right-0 z-50" transition:persist>
+  <Container>
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <a href="/meridian" class="text-xl font-bold tracking-tight text-slate-900">
+        GMI<span class="text-blue-600">2</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Nosotros</a>
+        <a href="#services" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Servicios</a>
+        <a href="#cases" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Casos</a>
+        <a href="#team" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Equipo</a>
+        <a
+          href="#contact"
+          class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Contactar
+        </a>
+      </div>
+    </div>
+  </Container>
+</nav>

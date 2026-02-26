@@ -1,0 +1,26 @@
+---
+import Container from '@components/layout/Container.astro';
+---
+
+<nav class="nexus-nav fixed top-0 left-0 right-0 z-50" transition:persist>
+  <Container>
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <a href="/nexus" class="text-xl font-bold tracking-tight text-white">
+        GMI<span class="text-sky-400">2</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#dashboard" class="text-sm text-white/70 hover:text-white transition-colors">Dashboard</a>
+        <a href="#products" class="text-sm text-white/70 hover:text-white transition-colors">Productos</a>
+        <a href="#services" class="text-sm text-white/70 hover:text-white transition-colors">Servicios</a>
+        <a href="#pricing" class="text-sm text-white/70 hover:text-white transition-colors">Precios</a>
+        <a
+          href="#contact"
+          class="px-5 py-2 text-sm font-medium text-white bg-sky-600 rounded-lg hover:bg-sky-700 transition-colors"
+        >
+          Empezar Proyecto
+        </a>
+      </div>
+    </div>
+  </Container>
+</nav>

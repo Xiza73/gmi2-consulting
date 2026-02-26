@@ -1,0 +1,75 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+
+const steps = [
+  { number: '01', title: 'Discovery', description: 'Entendemos tu negocio, objetivos y usuarios para definir el camino.' },
+  { number: '02', title: 'Design', description: 'Prototipamos y diseñamos la experiencia perfecta para tus usuarios.' },
+  { number: '03', title: 'Build', description: 'Desarrollamos con tecnologias modernas, testing y CI/CD.' },
+  { number: '04', title: 'Launch', description: 'Desplegamos, monitoreamos y optimizamos continuamente.' },
+];
+---
+
+<Section id="process" padding="lg">
+  <Container>
+    <div class="text-center mb-16">
+      <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest font-bold mb-4" data-reveal-y="30">
+        <span class="prism-gradient-text">Nuestro Proceso</span>
+      </p>
+      <h2 class="scroll-reveal opacity-0 text-4xl md:text-6xl font-black text-white" data-reveal-y="30" data-reveal-delay="0.1">
+        Como lo hacemos
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="prism-process-steps">
+      {steps.map((step) => (
+        <div class="prism-step-card opacity-0">
+          <div class="prism-card p-8 h-full text-center relative overflow-hidden">
+            <span class="text-8xl font-black prism-gradient-text opacity-20 absolute -top-4 -right-2 leading-none">
+              {step.number}
+            </span>
+            <div class="relative">
+              <h3 class="text-2xl font-black text-white mb-4 mt-8">{step.title}</h3>
+              <p class="text-white/50 text-sm leading-relaxed">{step.description}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initPrismProcess() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set('.prism-step-card', { opacity: 1 });
+      return;
+    }
+
+    gsap.utils.toArray<HTMLElement>('.prism-step-card').forEach((card, i) => {
+      gsap.fromTo(
+        card,
+        { opacity: 0, rotateY: -90, transformOrigin: 'left center' },
+        {
+          opacity: 1,
+          rotateY: 0,
+          duration: 0.8,
+          delay: i * 0.15,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        },
+      );
+    });
+  }
+
+  document.addEventListener('astro:page-load', initPrismProcess);
+</script>

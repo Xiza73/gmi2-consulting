@@ -1,0 +1,33 @@
+---
+interface Props {
+  direction?: 'up' | 'down' | 'left' | 'right';
+  delay?: number;
+  duration?: number;
+  class?: string;
+}
+
+const {
+  direction = 'up',
+  delay = 0,
+  duration = 1,
+  class: className = '',
+} = Astro.props;
+
+const axisMap = {
+  up: { attr: 'data-reveal-y', value: '60' },
+  down: { attr: 'data-reveal-y', value: '-60' },
+  left: { attr: 'data-reveal-x', value: '60' },
+  right: { attr: 'data-reveal-x', value: '-60' },
+};
+
+const { attr, value } = axisMap[direction];
+---
+
+<div
+  class:list={['scroll-reveal opacity-0', className]}
+  data-reveal-delay={delay}
+  data-reveal-duration={duration}
+  {...{ [attr]: value }}
+>
+  <slot />
+</div>

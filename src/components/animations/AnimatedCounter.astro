@@ -1,0 +1,11 @@
+---
+interface Props {
+  value: number;
+  suffix?: string;
+  class?: string;
+}
+
+const { value, suffix = '', class: className = '' } = Astro.props;
+---
+
+<span class:list={[className]} data-counter={value} data-counter-suffix={suffix}>0{suffix}</span>

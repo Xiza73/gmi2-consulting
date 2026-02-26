@@ -1,0 +1,35 @@
+[
+  {
+    "id": "starter",
+    "name": "Starter",
+    "price": "5,000",
+    "currency": "USD",
+    "period": "mes",
+    "description": "Ideal para MVPs y startups que necesitan validar su idea rapidamente.",
+    "features": ["1 Desarrollador dedicado", "Entregas semanales", "Soporte por email", "Stack moderno (React + Node)", "Deploy en cloud incluido"],
+    "highlighted": false,
+    "cta": "Comenzar"
+  },
+  {
+    "id": "growth",
+    "name": "Growth",
+    "price": "12,000",
+    "currency": "USD",
+    "period": "mes",
+    "description": "Para empresas en crecimiento que necesitan un equipo full-stack completo.",
+    "features": ["3 Desarrolladores dedicados", "Sprints de 2 semanas", "Soporte prioritario", "Arquitectura escalable", "CI/CD + Monitoring", "Code reviews + QA"],
+    "highlighted": true,
+    "cta": "Elegir Growth"
+  },
+  {
+    "id": "enterprise",
+    "name": "Enterprise",
+    "price": "Personalizado",
+    "currency": "",
+    "period": "",
+    "description": "Solucion a medida para grandes organizaciones con necesidades complejas.",
+    "features": ["Equipo dedicado a medida", "Project Manager asignado", "Soporte 24/7", "SLA garantizado", "Auditoria de seguridad", "Consultoria estrategica", "Capacitacion del equipo"],
+    "highlighted": false,
+    "cta": "Contactar"
+  }
+]

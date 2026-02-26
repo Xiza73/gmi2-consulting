@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.astro.build)",
+      "WebFetch(domain:www.launchfa.st)",
+      "WebFetch(domain:eastondev.com)",
+      "WebFetch",
+      "WebFetch(domain:tailkits.com)",
+      "WebFetch(domain:tympanus.net)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm build:*)",
+      "Bash(npx astro build:*)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)"
+    ]
+  }
+}

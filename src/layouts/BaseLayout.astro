@@ -1,0 +1,61 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import SEOHead from '@components/seo/SEOHead.astro';
+import StructuredData from '@components/seo/StructuredData.astro';
+import '@/styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  type = 'website',
+  noindex = false,
+  bodyClass = '',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEOHead title={title} description={description} image={image} type={type} noindex={noindex} />
+    <StructuredData
+      data={{
+        '@type': 'Organization',
+        name: 'GMI2 Consulting',
+        url: 'https://gmi2consulting.com',
+        description: 'Consultoria IT especializada en desarrollo full-stack, productos SaaS y transformacion digital.',
+        sameAs: [],
+      }}
+    />
+    <ClientRouter />
+    <slot name="head" />
+  </head>
+  <body class:list={['min-h-screen antialiased', bodyClass]}>
+    <slot />
+
+    <script>
+      import { cleanupAnimations, initAllAnimations } from '@/lib/animations';
+
+      document.addEventListener('astro:page-load', () => {
+        initAllAnimations();
+      });
+
+      document.addEventListener('astro:before-swap', () => {
+        cleanupAnimations();
+      });
+    </script>
+  </body>
+</html>

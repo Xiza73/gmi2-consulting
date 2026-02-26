@@ -1,0 +1,52 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+---
+
+<Section id="about" padding="lg">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <!-- Text -->
+      <div>
+        <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest text-blue-600 mb-4 font-medium" data-reveal-y="30">
+          Sobre Nosotros
+        </p>
+        <h2 class="scroll-reveal opacity-0 text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight" data-reveal-y="30" data-reveal-delay="0.1">
+          Tecnologia con proposito, resultados medibles
+        </h2>
+        <div class="space-y-4">
+          <p class="scroll-reveal opacity-0 text-slate-500 leading-relaxed" data-reveal-y="20" data-reveal-delay="0.2">
+            Somos un equipo de ingenieros, arquitectos y estrategas tecnologicos con mas de una decada de experiencia construyendo productos digitales que transforman negocios.
+          </p>
+          <p class="scroll-reveal opacity-0 text-slate-500 leading-relaxed" data-reveal-y="20" data-reveal-delay="0.3">
+            Nuestro enfoque combina excelencia tecnica con vision de negocio. No solo escribimos codigo — diseñamos soluciones que escalan, perduran y generan valor real.
+          </p>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="scroll-reveal opacity-0 relative" data-reveal-x="-60">
+        <div class="meridian-card p-8 bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100">
+          <div class="grid grid-cols-2 gap-6">
+            <div class="text-center p-4">
+              <span class="text-4xl font-bold text-blue-600">150+</span>
+              <p class="text-sm text-slate-500 mt-1">Proyectos</p>
+            </div>
+            <div class="text-center p-4">
+              <span class="text-4xl font-bold text-blue-600">80+</span>
+              <p class="text-sm text-slate-500 mt-1">Clientes</p>
+            </div>
+            <div class="text-center p-4">
+              <span class="text-4xl font-bold text-blue-600">25+</span>
+              <p class="text-sm text-slate-500 mt-1">Expertos</p>
+            </div>
+            <div class="text-center p-4">
+              <span class="text-4xl font-bold text-blue-600">12</span>
+              <p class="text-sm text-slate-500 mt-1">Anios</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>
