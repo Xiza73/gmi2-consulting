@@ -6,25 +6,54 @@ import NexusDashboardApp from './NexusDashboardApp';
 
 <Section id="dashboard" padding="lg">
   <Container>
-    <!-- Laptop Frame -->
     <div class="scroll-reveal opacity-0 max-w-6xl mx-auto" data-reveal-y="40" data-reveal-delay="0.1">
-      <!-- Screen -->
-      <div class="laptop-screen relative overflow-hidden">
-        <!-- Camera notch -->
-        <div class="flex justify-center">
-          <div class="laptop-notch w-20 h-4 flex items-center justify-center">
-            <div class="w-2 h-2 rounded-full bg-white/10"></div>
+
+      <!-- 3D Laptop Wrapper -->
+      <div class="laptop-3d-wrapper laptop-open" id="laptop-wrapper">
+
+        <!-- Lid (rotates on X axis) -->
+        <div class="laptop-lid" id="laptop-lid">
+          <!-- Front: Screen -->
+          <div class="laptop-lid-front">
+            <div class="laptop-screen">
+              <!-- Top bezel with camera -->
+              <div class="laptop-bezel-top">
+                <div class="laptop-camera"></div>
+              </div>
+              <!-- Screen content -->
+              <div class="laptop-screen-content relative overflow-hidden">
+                <NexusDashboardApp client:visible />
+              </div>
+              <!-- Bottom bezel (chin) -->
+              <div class="laptop-bezel-bottom"></div>
+            </div>
+          </div>
+          <!-- Back: Lid exterior -->
+          <div class="laptop-lid-back">
+            <div class="laptop-lid-exterior">
+              <div class="laptop-logo">
+                <span>G2</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Dashboard Content (React Island) -->
-        <NexusDashboardApp client:visible />
+        <!-- Base — front profile (thin wedge, like viewing a MacBook from the front) -->
+        <div class="laptop-base">
+          <div class="laptop-base-top-edge"></div>
+          <div class="laptop-base-front"></div>
+          <div class="laptop-base-bottom-edge"></div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button class="laptop-toggle-btn" id="laptop-toggle" aria-label="Cerrar laptop">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+          <span id="laptop-toggle-text">Cerrar</span>
+        </button>
       </div>
 
-      <!-- Keyboard Base -->
-      <div class="laptop-base h-5 md:h-7 flex items-center justify-center">
-        <div class="w-16 md:w-24 h-1 rounded-full bg-white/10"></div>
-      </div>
     </div>
   </Container>
 </Section>
@@ -56,5 +85,78 @@ import NexusDashboardApp from './NexusDashboardApp';
     });
   }
 
-  document.addEventListener('astro:page-load', initDashboardReveal);
+  function initLaptopAnimation() {
+    const wrapper = document.getElementById('laptop-wrapper');
+    const lid = document.getElementById('laptop-lid');
+    const toggleBtn = document.getElementById('laptop-toggle');
+    const toggleText = document.getElementById('laptop-toggle-text');
+    if (!wrapper || !lid || !toggleBtn || !toggleText) return;
+
+    let isOpen = true;
+    let isAnimating = false;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const closeTl = gsap.timeline({ paused: true });
+    closeTl.to(lid, {
+      rotateX: -90,
+      duration: 0.8,
+      ease: 'power2.inOut',
+    });
+
+    function toggle() {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      if (isOpen) {
+        if (reducedMotion) {
+          gsap.set(lid, { rotateX: -90 });
+          wrapper.classList.replace('laptop-open', 'laptop-closed');
+          toggleBtn.classList.add('is-closed');
+          toggleText.textContent = 'Abrir';
+          toggleBtn.setAttribute('aria-label', 'Abrir laptop');
+          isOpen = false;
+          isAnimating = false;
+          return;
+        }
+        closeTl.play().then(() => {
+          wrapper.classList.replace('laptop-open', 'laptop-closed');
+          toggleBtn.classList.add('is-closed');
+          toggleText.textContent = 'Abrir';
+          toggleBtn.setAttribute('aria-label', 'Abrir laptop');
+          isOpen = false;
+          isAnimating = false;
+        });
+      } else {
+        if (reducedMotion) {
+          gsap.set(lid, { rotateX: 0 });
+          wrapper.classList.replace('laptop-closed', 'laptop-open');
+          toggleBtn.classList.remove('is-closed');
+          toggleText.textContent = 'Cerrar';
+          toggleBtn.setAttribute('aria-label', 'Cerrar laptop');
+          isOpen = true;
+          isAnimating = false;
+          return;
+        }
+        closeTl.reverse().then(() => {
+          wrapper.classList.replace('laptop-closed', 'laptop-open');
+          toggleBtn.classList.remove('is-closed');
+          toggleText.textContent = 'Cerrar';
+          toggleBtn.setAttribute('aria-label', 'Cerrar laptop');
+          isOpen = true;
+          isAnimating = false;
+        });
+      }
+    }
+
+    toggleBtn.addEventListener('click', toggle);
+
+    document.addEventListener('astro:before-swap', () => {
+      closeTl.kill();
+    }, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    initDashboardReveal();
+    initLaptopAnimation();
+  });
 </script>
