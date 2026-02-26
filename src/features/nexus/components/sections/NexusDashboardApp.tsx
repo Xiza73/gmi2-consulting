@@ -708,7 +708,7 @@ function ProgressRings({ animated }: { animated: boolean }) {
 }
 
 function SettingsPanel() {
-  const [notifications, setNotifications] = useState([true, true, false]);
+  const [notifications, setNotifications] = useState<boolean[]>([true, true, false]);
   const [selectedTheme, setSelectedTheme] = useState(0);
 
   const notifItems = [
@@ -718,7 +718,7 @@ function SettingsPanel() {
   ];
 
   const handleToggle = (idx: number) => {
-    setNotifications((prev) => prev.map((v, i) => (i === idx ? !v : v)));
+    setNotifications((prev: boolean[]) => prev.map((v, i) => (i === idx ? !v : v)));
   };
 
   return (

@@ -86,11 +86,16 @@ import NexusDashboardApp from './NexusDashboardApp';
   }
 
   function initLaptopAnimation() {
-    const wrapper = document.getElementById('laptop-wrapper');
-    const lid = document.getElementById('laptop-lid');
-    const toggleBtn = document.getElementById('laptop-toggle');
-    const toggleText = document.getElementById('laptop-toggle-text');
-    if (!wrapper || !lid || !toggleBtn || !toggleText) return;
+    const _wrapper = document.getElementById('laptop-wrapper');
+    const _lid = document.getElementById('laptop-lid');
+    const _btn = document.getElementById('laptop-toggle');
+    const _txt = document.getElementById('laptop-toggle-text');
+    if (!_wrapper || !_lid || !_btn || !_txt) return;
+
+    const wrapper = _wrapper;
+    const lid = _lid;
+    const toggleBtn = _btn;
+    const toggleText = _txt;
 
     let isOpen = true;
     let isAnimating = false;
@@ -103,6 +108,24 @@ import NexusDashboardApp from './NexusDashboardApp';
       ease: 'power2.inOut',
     });
 
+    function setOpen() {
+      wrapper.classList.replace('laptop-closed', 'laptop-open');
+      toggleBtn.classList.remove('is-closed');
+      toggleText.textContent = 'Cerrar';
+      toggleBtn.setAttribute('aria-label', 'Cerrar laptop');
+      isOpen = true;
+      isAnimating = false;
+    }
+
+    function setClosed() {
+      wrapper.classList.replace('laptop-open', 'laptop-closed');
+      toggleBtn.classList.add('is-closed');
+      toggleText.textContent = 'Abrir';
+      toggleBtn.setAttribute('aria-label', 'Abrir laptop');
+      isOpen = false;
+      isAnimating = false;
+    }
+
     function toggle() {
       if (isAnimating) return;
       isAnimating = true;
@@ -110,41 +133,17 @@ import NexusDashboardApp from './NexusDashboardApp';
       if (isOpen) {
         if (reducedMotion) {
           gsap.set(lid, { rotateX: -90 });
-          wrapper.classList.replace('laptop-open', 'laptop-closed');
-          toggleBtn.classList.add('is-closed');
-          toggleText.textContent = 'Abrir';
-          toggleBtn.setAttribute('aria-label', 'Abrir laptop');
-          isOpen = false;
-          isAnimating = false;
+          setClosed();
           return;
         }
-        closeTl.play().then(() => {
-          wrapper.classList.replace('laptop-open', 'laptop-closed');
-          toggleBtn.classList.add('is-closed');
-          toggleText.textContent = 'Abrir';
-          toggleBtn.setAttribute('aria-label', 'Abrir laptop');
-          isOpen = false;
-          isAnimating = false;
-        });
+        closeTl.play().then(setClosed);
       } else {
         if (reducedMotion) {
           gsap.set(lid, { rotateX: 0 });
-          wrapper.classList.replace('laptop-closed', 'laptop-open');
-          toggleBtn.classList.remove('is-closed');
-          toggleText.textContent = 'Cerrar';
-          toggleBtn.setAttribute('aria-label', 'Cerrar laptop');
-          isOpen = true;
-          isAnimating = false;
+          setOpen();
           return;
         }
-        closeTl.reverse().then(() => {
-          wrapper.classList.replace('laptop-closed', 'laptop-open');
-          toggleBtn.classList.remove('is-closed');
-          toggleText.textContent = 'Cerrar';
-          toggleBtn.setAttribute('aria-label', 'Cerrar laptop');
-          isOpen = true;
-          isAnimating = false;
-        });
+        closeTl.reverse().then(setOpen);
       }
     }
 

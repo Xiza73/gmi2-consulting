@@ -55,9 +55,9 @@ const outerTechs: TechItem[] = [
     <div class="relative w-full max-w-3xl mx-auto aspect-square scroll-reveal opacity-0" data-reveal-y="40" id="orbit-system">
 
       <!-- Orbit rings with gradient glow -->
-      <div class="absolute inset-[32%] rounded-full border border-white/[0.08] shadow-[0_0_40px_rgba(236,72,153,0.05)]"></div>
-      <div class="absolute inset-[18%] rounded-full border border-white/[0.06] shadow-[0_0_40px_rgba(249,115,22,0.04)]"></div>
-      <div class="absolute inset-[8%] rounded-full border border-white/[0.04] shadow-[0_0_40px_rgba(234,179,8,0.03)]"></div>
+      <div class="absolute inset-[32%] rounded-full border border-white/08 shadow-[0_0_40px_rgba(236,72,153,0.05)]"></div>
+      <div class="absolute inset-[18%] rounded-full border border-white/06 shadow-[0_0_40px_rgba(249,115,22,0.04)]"></div>
+      <div class="absolute inset-[8%] rounded-full border border-white/04 shadow-[0_0_40px_rgba(234,179,8,0.03)]"></div>
 
       <!-- Decorative orbit dots -->
       <div class="absolute inset-[32%] rounded-full prism-orbit" style="animation-duration: 60s;">
@@ -72,10 +72,10 @@ const outerTechs: TechItem[] = [
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
         <div class="relative group cursor-default">
           <!-- Pulse rings -->
-          <div class="absolute inset-0 -m-3 rounded-full bg-gradient-to-r from-pink-500/20 to-orange-500/20 animate-ping" style="animation-duration: 3s;"></div>
-          <div class="absolute inset-0 -m-1.5 rounded-full bg-gradient-to-r from-pink-500/10 to-orange-500/10 animate-pulse"></div>
+          <div class="absolute inset-0 -m-3 rounded-full bg-linear-to-r from-pink-500/20 to-orange-500/20 animate-ping" style="animation-duration: 3s;"></div>
+          <div class="absolute inset-0 -m-1.5 rounded-full bg-linear-to-r from-pink-500/10 to-orange-500/10 animate-pulse"></div>
           <!-- Core -->
-          <div class="relative w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-pink-500 via-orange-500 to-yellow-500 flex items-center justify-center shadow-2xl shadow-pink-500/30">
+          <div class="relative w-24 h-24 md:w-28 md:h-28 rounded-full bg-linear-to-br from-pink-500 via-orange-500 to-yellow-500 flex items-center justify-center shadow-2xl shadow-pink-500/30">
             <div class="text-center">
               <span class="text-white font-black text-2xl md:text-3xl block leading-none">GMI2</span>
               <span class="text-white/70 text-[9px] font-semibold uppercase tracking-wider">Consulting</span>
@@ -94,7 +94,7 @@ const outerTechs: TechItem[] = [
             style={`top: ${50 + 32 * Math.sin(rad)}%; left: ${50 + 32 * Math.cos(rad)}%; transform: translate(-50%, -50%);`}
           >
             <div
-              class="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/[0.12] backdrop-blur-md cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/[0.12]"
+              class="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/06 border border-white/12 backdrop-blur-md cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/12"
               style={`--tech-color: ${tech.color}; --tech-glow: ${tech.glow};`}
             >
               <!-- Color indicator -->
@@ -117,7 +117,7 @@ const outerTechs: TechItem[] = [
             style={`top: ${50 + 48 * Math.sin(rad)}%; left: ${50 + 48 * Math.cos(rad)}%; transform: translate(-50%, -50%);`}
           >
             <div
-              class="group relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] backdrop-blur-sm cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/[0.10]"
+              class="group relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/04 border border-white/08 backdrop-blur-sm cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/10"
             >
               <div class="w-2 h-2 rounded-full shrink-0" style={`background: ${tech.color}; box-shadow: 0 0 10px ${tech.glow};`}></div>
               <span class="text-xs font-semibold text-white/70 whitespace-nowrap group-hover:text-white/90 transition-colors">{tech.name}</span>
@@ -137,7 +137,7 @@ const outerTechs: TechItem[] = [
             style={`top: ${50 + 56 * Math.sin(rad)}%; left: ${50 + 56 * Math.cos(rad)}%; transform: translate(-50%, -50%);`}
           >
             <div
-              class="group relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/[0.08]"
+              class="group relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/03 border border-white/06 cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/08"
             >
               <div class="w-1.5 h-1.5 rounded-full shrink-0" style={`background: ${tech.color}; box-shadow: 0 0 8px ${tech.glow};`}></div>
               <span class="text-[11px] font-medium text-white/50 whitespace-nowrap group-hover:text-white/80 transition-colors">{tech.name}</span>

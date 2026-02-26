@@ -45,7 +45,7 @@ const options = [
 <BaseLayout
   title="GMI2 Consulting — Landing Page Options"
   description="Elige entre 4 opciones de landing page profesionales para GMI2 Consulting."
-  bodyClass="bg-[#030014]"
+  bodyClass="bg-surface-dark"
 >
   <div class="min-h-screen flex flex-col items-center justify-center px-4 py-20">
     <Container size="lg">
@@ -68,13 +68,13 @@ const options = [
           <a
             href={option.href}
             class:list={[
-              'selector-card opacity-0 group block rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl backdrop-blur-sm',
+              'selector-card opacity-0 group block rounded-2xl border border-white/10 bg-white/2 p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl backdrop-blur-sm',
               option.bgHover,
             ]}
             data-astro-prefetch
           >
             <!-- Gradient Bar -->
-            <div class:list={['h-1.5 w-16 rounded-full bg-gradient-to-r mb-6', option.gradient]}></div>
+            <div class:list={['h-1.5 w-16 rounded-full bg-linear-to-r mb-6', option.gradient]}></div>
 
             <!-- Title -->
             <h2 class="text-2xl font-bold text-white mb-1 group-hover:translate-x-1 transition-transform">
