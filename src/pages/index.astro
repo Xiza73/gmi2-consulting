@@ -39,12 +39,21 @@ const options = [
     bgHover: 'hover:border-sky-500/50 hover:shadow-sky-500/10',
     textAccent: 'text-sky-400',
   },
+  {
+    name: 'Forge',
+    subtitle: 'Best-of + Completo',
+    description: 'Lo mejor de las 4 opciones: blob 3D, bento grid, orbitas tech, case studies, testimonios y footer completo. Paleta bold pink-orange-yellow.',
+    href: '/forge',
+    gradient: 'from-pink-500 via-orange-500 to-yellow-500',
+    bgHover: 'hover:border-orange-500/50 hover:shadow-orange-500/10',
+    textAccent: 'text-orange-400',
+  },
 ];
 ---
 
 <BaseLayout
   title="GMI2 Consulting — Landing Page Options"
-  description="Elige entre 4 opciones de landing page profesionales para GMI2 Consulting."
+  description="Elige entre 5 opciones de landing page profesionales para GMI2 Consulting."
   bodyClass="bg-surface-dark"
 >
   <div class="min-h-screen flex flex-col items-center justify-center px-4 py-20">
@@ -58,12 +67,12 @@ const options = [
           Elige tu Landing Page
         </h1>
         <p class="text-lg text-white/40 max-w-xl mx-auto">
-          4 opciones de diseño profesional.
+          5 opciones de diseño profesional.
         </p>
       </div>
 
       <!-- Options Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="options-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6" id="options-grid">
         {options.map((option) => (
           <a
             href={option.href}

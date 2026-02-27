@@ -1,0 +1,85 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+
+const cases = [
+  {
+    title: 'Plataforma SaaS de Gestion',
+    category: 'SaaS Product',
+    description: 'Diseño y desarrollo de una plataforma de gestion empresarial que automatizo el 80% de los procesos operativos del cliente.',
+    metrics: ['3 meses de desarrollo', '80% procesos automatizados', '10k+ usuarios activos'],
+    color: 'from-pink-500 to-orange-500',
+  },
+  {
+    title: 'App Movil de Fintech',
+    category: 'Mobile App',
+    description: 'Aplicacion movil cross-platform para una fintech que proceso mas de $50M en transacciones en su primer anio.',
+    metrics: ['React Native', '$50M+ transacciones', '4.8 App Store rating'],
+    color: 'from-orange-500 to-yellow-500',
+  },
+  {
+    title: 'Migracion Cloud Enterprise',
+    category: 'Cloud Architecture',
+    description: 'Migracion completa de infraestructura on-premise a AWS con zero downtime y 40% de reduccion en costos.',
+    metrics: ['Zero downtime', '40% ahorro', '99.99% uptime'],
+    color: 'from-violet-500 to-pink-500',
+  },
+  {
+    title: 'Dashboard de Analytics',
+    category: 'Full-Stack Development',
+    description: 'Dashboard de analytics en tiempo real procesando millones de eventos diarios con visualizaciones interactivas.',
+    metrics: ['Real-time processing', '5M+ events/dia', 'Sub-second latency'],
+    color: 'from-yellow-500 to-orange-500',
+  },
+];
+---
+
+<Section id="cases" padding="lg">
+  <Container>
+    <div class="text-center mb-16">
+      <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest font-bold mb-4" data-reveal-y="30">
+        <span class="forge-gradient-text">Casos de Exito</span>
+      </p>
+      <h2 class="scroll-reveal opacity-0 text-4xl md:text-6xl font-black text-white" data-reveal-y="30" data-reveal-delay="0.1">
+        Proyectos destacados
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {cases.map((item, i) => (
+        <div
+          class="scroll-reveal opacity-0 group"
+          data-reveal-y="30"
+          data-reveal-delay={String(i * 0.1)}
+        >
+          <div class="forge-card h-full overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+            {/* Color Bar */}
+            <div class:list={['h-1.5 bg-linear-to-r transition-all duration-500 group-hover:h-2', item.color]}></div>
+
+            <div class="p-8">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs uppercase tracking-widest font-semibold forge-gradient-text">{item.category}</span>
+                <span class="text-white/10 font-black text-2xl select-none group-hover:text-white/20 transition-colors duration-300">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              </div>
+
+              <h3 class="text-xl font-black text-white mb-3 group-hover:text-pink-300 transition-colors duration-300">
+                {item.title}
+              </h3>
+              <p class="text-white/40 text-sm leading-relaxed mb-6">{item.description}</p>
+
+              <div class="flex flex-wrap gap-2">
+                {item.metrics.map((metric) => (
+                  <span class="px-3 py-1.5 text-xs font-medium bg-white/5 text-white/50 rounded-full border border-white/8 group-hover:bg-pink-500/10 group-hover:text-pink-300 group-hover:border-pink-500/20 transition-colors duration-300">
+                    {metric}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

@@ -1,0 +1,311 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+
+interface TechItem {
+  name: string;
+  color: string;
+  glow: string;
+}
+
+const innerTechs: TechItem[] = [
+  { name: 'React', color: '#61dafb', glow: 'rgba(97,218,251,0.4)' },
+  { name: 'TypeScript', color: '#3178c6', glow: 'rgba(49,120,198,0.4)' },
+  { name: 'Node.js', color: '#68a063', glow: 'rgba(104,160,99,0.4)' },
+  { name: 'Python', color: '#ffd43b', glow: 'rgba(255,212,59,0.4)' },
+];
+
+const middleTechs: TechItem[] = [
+  { name: 'Next.js', color: '#ffffff', glow: 'rgba(255,255,255,0.3)' },
+  { name: 'NestJS', color: '#e0234e', glow: 'rgba(224,35,78,0.4)' },
+  { name: 'Flutter', color: '#02569b', glow: 'rgba(2,86,155,0.4)' },
+  { name: 'GraphQL', color: '#e535ab', glow: 'rgba(229,53,171,0.4)' },
+  { name: 'Tailwind', color: '#38bdf8', glow: 'rgba(56,189,248,0.4)' },
+  { name: 'Prisma', color: '#5a67d8', glow: 'rgba(90,103,216,0.4)' },
+];
+
+const outerTechs: TechItem[] = [
+  { name: 'AWS', color: '#ff9900', glow: 'rgba(255,153,0,0.4)' },
+  { name: 'Docker', color: '#2496ed', glow: 'rgba(36,150,237,0.4)' },
+  { name: 'Kubernetes', color: '#326ce5', glow: 'rgba(50,108,229,0.4)' },
+  { name: 'PostgreSQL', color: '#4169e1', glow: 'rgba(65,105,225,0.4)' },
+  { name: 'MongoDB', color: '#47a248', glow: 'rgba(71,162,72,0.4)' },
+  { name: 'Redis', color: '#dc382d', glow: 'rgba(220,56,45,0.4)' },
+  { name: 'CI/CD', color: '#f97316', glow: 'rgba(249,115,22,0.4)' },
+  { name: 'React Native', color: '#61dafb', glow: 'rgba(97,218,251,0.4)' },
+];
+---
+
+<Section id="tech" padding="lg">
+  <Container>
+    <div class="text-center mb-20">
+      <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest font-bold mb-4" data-reveal-y="30">
+        <span class="forge-gradient-text">Stack Tecnologico</span>
+      </p>
+      <h2 class="scroll-reveal opacity-0 text-4xl md:text-6xl font-black text-white mb-6" data-reveal-y="30" data-reveal-delay="0.1">
+        Nuestras Herramientas
+      </h2>
+      <p class="scroll-reveal opacity-0 text-lg text-white/40 max-w-2xl mx-auto" data-reveal-y="20" data-reveal-delay="0.2">
+        Dominamos las tecnologias mas demandadas del mercado para construir soluciones robustas y escalables.
+      </p>
+    </div>
+
+    <!-- Orbit System -->
+    <div class="relative w-full max-w-3xl mx-auto aspect-square scroll-reveal opacity-0" data-reveal-y="40" id="forge-orbit-system">
+
+      <!-- Orbit rings — solid -->
+      <div class="absolute inset-[32%] rounded-full border border-white/8 shadow-[0_0_40px_rgba(236,72,153,0.05)] forge-ring-inner"></div>
+      <div class="absolute inset-[18%] rounded-full border border-white/6 shadow-[0_0_40px_rgba(249,115,22,0.04)] forge-ring-middle"></div>
+      <div class="absolute inset-[8%] rounded-full border border-white/4 shadow-[0_0_40px_rgba(234,179,8,0.03)] forge-ring-outer"></div>
+
+      <!-- Traveling particles on orbits -->
+      <div class="absolute inset-[32%] rounded-full forge-orbit" style="animation-duration: 12s;">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-pink-500/60 shadow-[0_0_12px_rgba(236,72,153,0.8)]"></div>
+      </div>
+      <div class="absolute inset-[32%] rounded-full forge-orbit-reverse" style="animation-duration: 18s;">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 rounded-full bg-orange-400/50 shadow-[0_0_10px_rgba(249,115,22,0.7)]"></div>
+      </div>
+      <div class="absolute inset-[18%] rounded-full forge-orbit" style="animation-duration: 25s;">
+        <div class="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-yellow-400/50 shadow-[0_0_10px_rgba(234,179,8,0.6)]"></div>
+      </div>
+      <div class="absolute inset-[18%] rounded-full forge-orbit-reverse" style="animation-duration: 30s;">
+        <div class="absolute top-0 left-1/4 -translate-y-1/2 w-1 h-1 rounded-full bg-pink-400/40 shadow-[0_0_8px_rgba(236,72,153,0.5)]"></div>
+      </div>
+      <div class="absolute inset-[8%] rounded-full forge-orbit" style="animation-duration: 40s;">
+        <div class="absolute bottom-0 right-1/4 translate-y-1/2 w-1 h-1 rounded-full bg-orange-400/30 shadow-[0_0_6px_rgba(249,115,22,0.4)]"></div>
+      </div>
+
+      <!-- Center piece -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+        <div class="relative group cursor-default">
+          <div class="absolute inset-0 -m-5 rounded-full bg-linear-to-r from-pink-500/15 to-orange-500/15 animate-ping" style="animation-duration: 3s;"></div>
+          <div class="absolute inset-0 -m-3 rounded-full bg-linear-to-r from-pink-500/10 to-orange-500/10 animate-pulse"></div>
+          <div class="forge-center-orb relative w-24 h-24 md:w-28 md:h-28 rounded-full bg-linear-to-br from-pink-500 via-orange-500 to-yellow-500 flex items-center justify-center shadow-2xl shadow-pink-500/30">
+            <div class="text-center">
+              <span class="text-white font-black text-2xl md:text-3xl block leading-none">GMI2</span>
+              <span class="text-white/70 text-[9px] font-semibold uppercase tracking-wider">Consulting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        Inner orbit wrapper: rotates the whole group via CSS transform (GPU).
+        Each item counter-rotates to keep text upright.
+      -->
+      <div class="absolute inset-0 forge-rotate-cw z-10" style="--orbit-duration: 120s;">
+        {innerTechs.map((tech, i) => {
+          const angle = (i / innerTechs.length) * 360 - 90;
+          const rad = (angle * Math.PI) / 180;
+          return (
+            <div
+              class="forge-orbit-item forge-counter-cw absolute"
+              style={`top: ${50 + 32 * Math.sin(rad)}%; left: ${50 + 32 * Math.cos(rad)}%; translate: -50% -50%; --orbit-duration: 120s;`}
+            >
+              <div class="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/6 border border-white/12 backdrop-blur-md cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/12">
+                <div class="forge-tech-dot w-2.5 h-2.5 rounded-full shrink-0 shadow-lg" style={`background: ${tech.color}; box-shadow: 0 0 12px ${tech.glow};`}></div>
+                <span class="text-sm font-bold text-white/90 whitespace-nowrap">{tech.name}</span>
+                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`box-shadow: 0 0 25px ${tech.glow}, inset 0 0 15px ${tech.glow};`}></div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Middle orbit wrapper: rotates reverse -->
+      <div class="absolute inset-0 forge-rotate-ccw z-10" style="--orbit-duration: 180s;">
+        {middleTechs.map((tech, i) => {
+          const angle = (i / middleTechs.length) * 360 - 60;
+          const rad = (angle * Math.PI) / 180;
+          return (
+            <div
+              class="forge-orbit-item forge-counter-ccw absolute"
+              style={`top: ${50 + 48 * Math.sin(rad)}%; left: ${50 + 48 * Math.cos(rad)}%; translate: -50% -50%; --orbit-duration: 180s;`}
+            >
+              <div class="group relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/4 border border-white/8 backdrop-blur-sm cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/10">
+                <div class="forge-tech-dot w-2 h-2 rounded-full shrink-0" style={`background: ${tech.color}; box-shadow: 0 0 10px ${tech.glow};`}></div>
+                <span class="text-xs font-semibold text-white/70 whitespace-nowrap group-hover:text-white/90 transition-colors">{tech.name}</span>
+                <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`box-shadow: 0 0 20px ${tech.glow};`}></div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Outer items: float, no orbit -->
+      {outerTechs.map((tech, i) => {
+        const angle = (i / outerTechs.length) * 360 - 30;
+        const rad = (angle * Math.PI) / 180;
+        return (
+          <div
+            class="forge-orbit-item forge-float-item absolute z-10"
+            style={`top: ${50 + 56 * Math.sin(rad)}%; left: ${50 + 56 * Math.cos(rad)}%; transform: translate(-50%, -50%); --float-duration: ${3.5 + (i * 0.4)}s; --float-delay: ${-i * 0.5}s;`}
+          >
+            <div class="group relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/3 border border-white/6 cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/8">
+              <div class="forge-tech-dot w-1.5 h-1.5 rounded-full shrink-0" style={`background: ${tech.color}; box-shadow: 0 0 8px ${tech.glow};`}></div>
+              <span class="text-[11px] font-medium text-white/50 whitespace-nowrap group-hover:text-white/80 transition-colors">{tech.name}</span>
+              <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`box-shadow: 0 0 15px ${tech.glow};`}></div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Bottom stats -->
+    <div class="relative z-20 flex justify-center gap-12 mt-24 scroll-reveal opacity-0" data-reveal-y="20" data-reveal-delay="0.3">
+      <div class="text-center">
+        <p class="text-3xl font-black forge-gradient-text">18+</p>
+        <p class="text-sm text-white/40 mt-1">Tecnologias</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl font-black forge-gradient-text">5</p>
+        <p class="text-sm text-white/40 mt-1">Categorias</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl font-black forge-gradient-text">100%</p>
+        <p class="text-sm text-white/40 mt-1">Full-Stack</p>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  /* Orbit ring subtle rotation */
+  .forge-ring-inner { animation: forge-spin 60s linear infinite; }
+  .forge-ring-middle { animation: forge-spin 90s linear infinite reverse; }
+  .forge-ring-outer { animation: forge-spin 120s linear infinite; }
+
+  @keyframes forge-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Wrapper rotation — GPU-composited, butter smooth */
+  .forge-rotate-cw {
+    animation: forge-spin var(--orbit-duration, 120s) linear infinite;
+    will-change: transform;
+  }
+  .forge-rotate-ccw {
+    animation: forge-spin var(--orbit-duration, 180s) linear infinite reverse;
+    will-change: transform;
+  }
+
+  /* Counter-rotation on each item so text stays upright */
+  .forge-counter-cw {
+    animation: forge-spin var(--orbit-duration, 120s) linear infinite reverse;
+    will-change: transform;
+  }
+  .forge-counter-ccw {
+    animation: forge-spin var(--orbit-duration, 180s) linear infinite;
+    will-change: transform;
+  }
+
+  /* Outer items: gentle float */
+  .forge-float-item {
+    animation: forge-float var(--float-duration, 4s) ease-in-out infinite var(--float-delay, 0s);
+  }
+
+  @keyframes forge-float {
+    0%, 100% { translate: -50% -50%; }
+    50% { translate: -50% calc(-50% - 8px); }
+  }
+
+  /* Tech dot pulse */
+  .forge-tech-dot {
+    animation: forge-dot-pulse 2.5s ease-in-out infinite var(--dot-delay, 0s);
+  }
+
+  @keyframes forge-dot-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.4); }
+  }
+
+  /* Center orb breathing */
+  .forge-center-orb {
+    animation: forge-breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes forge-breathe {
+    0%, 100% { transform: scale(1); box-shadow: 0 25px 50px -12px rgba(236,72,153,0.3); }
+    50% { transform: scale(1.05); box-shadow: 0 25px 60px -8px rgba(236,72,153,0.5), 0 0 80px rgba(249,115,22,0.15); }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .forge-ring-inner, .forge-ring-middle, .forge-ring-outer,
+    .forge-rotate-cw, .forge-rotate-ccw,
+    .forge-counter-cw, .forge-counter-ccw,
+    .forge-float-item, .forge-tech-dot, .forge-center-orb {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initForgeTech() {
+    const system = document.getElementById('forge-orbit-system');
+    if (!system) return;
+
+    const items = system.querySelectorAll<HTMLElement>('.forge-orbit-item');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Randomize dot pulse delays
+    items.forEach((item) => {
+      const dot = item.querySelector<HTMLElement>('.forge-tech-dot');
+      if (dot) {
+        dot.style.setProperty('--dot-delay', `${-Math.random() * 2.5}s`);
+      }
+    });
+
+    if (reducedMotion) return;
+
+    // Staggered entrance (opacity only)
+    gsap.set(items, { opacity: 0 });
+    ScrollTrigger.create({
+      trigger: system,
+      start: 'top 70%',
+      once: true,
+      onEnter: () => {
+        gsap.to(items, {
+          opacity: 1,
+          duration: 0.6,
+          stagger: { each: 0.06, from: 'center' },
+          ease: 'power2.out',
+        });
+      },
+    });
+
+    // Hover: elastic pop
+    items.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        gsap.to(item, { scale: 1.2, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
+      });
+      item.addEventListener('mouseleave', () => {
+        gsap.to(item, { scale: 1, duration: 0.5, ease: 'power2.out' });
+      });
+    });
+
+    // Random highlight pulse
+    function randomPulse() {
+      const idx = Math.floor(Math.random() * items.length);
+      const inner = items[idx].querySelector<HTMLElement>('div');
+      if (!inner) return;
+
+      gsap.timeline()
+        .to(inner, { boxShadow: '0 0 20px rgba(236,72,153,0.4), 0 0 40px rgba(249,115,22,0.2)', duration: 0.5, ease: 'power2.out' })
+        .to(inner, { boxShadow: 'none', duration: 1, ease: 'power2.inOut' });
+    }
+
+    const interval = setInterval(randomPulse, 2500);
+
+    document.addEventListener('astro:before-swap', () => {
+      clearInterval(interval);
+    }, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', initForgeTech);
+</script>
