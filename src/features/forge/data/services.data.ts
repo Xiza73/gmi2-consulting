@@ -1,66 +1,119 @@
-export interface Service {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-  features: string[];
-}
+import type { LocaleMap } from '@/i18n/config';
+import type { Service, ServicesHeader } from './types';
 
-export const SERVICES_HEADER = {
-  eyebrow: 'Que Hacemos',
-  title: 'Servicios',
-} as const;
+export const SERVICES_HEADER: LocaleMap<ServicesHeader> = {
+  es: {
+    eyebrow: 'Que Hacemos',
+    title: 'Servicios',
+  },
+  en: {
+    eyebrow: 'What We Do',
+    title: 'Services',
+  },
+};
 
-export const SERVICES: Service[] = [
-  {
-    id: 'ai-agents',
-    title: 'Agentes de IA',
-    description:
-      'Diseñamos e implementamos agentes inteligentes que ejecutan tareas, responden consultas y automatizan flujos completos conectados a tus herramientas actuales.',
-    icon: 'cpu',
-    features: ['Atencion al cliente', 'Gestion de leads', 'Soporte interno', 'Asistentes especializados'],
-  },
-  {
-    id: 'process-automation',
-    title: 'Automatizacion de Procesos',
-    description:
-      'Identificamos procesos manuales y repetitivos en tu operacion y los automatizamos con IA para liberar tiempo y reducir errores.',
-    icon: 'workflow',
-    features: ['Flujos automatizados', 'Integraciones', 'Reportes inteligentes', 'Alertas y notificaciones'],
-  },
-  {
-    id: 'ai-consulting',
-    title: 'Consultoria en IA',
-    description:
-      'Te ayudamos a entender donde la inteligencia artificial puede generar valor real en tu negocio y diseñamos la hoja de ruta para implementarla.',
-    icon: 'lightbulb',
-    features: ['Diagnostico operativo', 'Roadmap de IA', 'Capacitacion', 'Estrategia de adopcion'],
-  },
-  {
-    id: 'integrations',
-    title: 'Integraciones Inteligentes',
-    description:
-      'Conectamos tus herramientas existentes — WhatsApp, Google Workspace, CRMs, ERPs — con agentes de IA para crear flujos unificados y eficientes.',
-    icon: 'plug',
-    features: ['WhatsApp Business', 'Google Workspace', 'CRMs / ERPs', 'APIs personalizadas'],
-  },
-  {
-    id: 'data-analytics',
-    title: 'Datos e Insights',
-    description:
-      'Transformamos tus datos operativos en insights accionables con dashboards inteligentes y reportes automatizados.',
-    icon: 'chart',
-    features: ['Dashboards en tiempo real', 'KPIs automatizados', 'Analisis predictivo', 'Reportes periodicos'],
-  },
-  {
-    id: 'custom-solutions',
-    title: 'Soluciones a Medida',
-    description:
-      'Desarrollamos soluciones personalizadas cuando tu negocio necesita algo que no existe en el mercado. Desde MVPs hasta plataformas completas.',
-    icon: 'code',
-    features: ['MVPs rapidos', 'Plataformas web', 'Apps internas', 'Herramientas de gestion'],
-  },
-];
+export const SERVICES: LocaleMap<readonly Service[]> = {
+  es: [
+    {
+      id: 'ai-agents',
+      title: 'Agentes de IA',
+      description:
+        'Diseñamos e implementamos agentes inteligentes que ejecutan tareas, responden consultas y automatizan flujos completos conectados a tus herramientas actuales.',
+      icon: 'cpu',
+      features: ['Atencion al cliente', 'Gestion de leads', 'Soporte interno', 'Asistentes especializados'],
+    },
+    {
+      id: 'process-automation',
+      title: 'Automatizacion de Procesos',
+      description:
+        'Identificamos procesos manuales y repetitivos en tu operacion y los automatizamos con IA para liberar tiempo y reducir errores.',
+      icon: 'workflow',
+      features: ['Flujos automatizados', 'Integraciones', 'Reportes inteligentes', 'Alertas y notificaciones'],
+    },
+    {
+      id: 'ai-consulting',
+      title: 'Consultoria en IA',
+      description:
+        'Te ayudamos a entender donde la inteligencia artificial puede generar valor real en tu negocio y diseñamos la hoja de ruta para implementarla.',
+      icon: 'lightbulb',
+      features: ['Diagnostico operativo', 'Roadmap de IA', 'Capacitacion', 'Estrategia de adopcion'],
+    },
+    {
+      id: 'integrations',
+      title: 'Integraciones Inteligentes',
+      description:
+        'Conectamos tus herramientas existentes — WhatsApp, Google Workspace, CRMs, ERPs — con agentes de IA para crear flujos unificados y eficientes.',
+      icon: 'plug',
+      features: ['WhatsApp Business', 'Google Workspace', 'CRMs / ERPs', 'APIs personalizadas'],
+    },
+    {
+      id: 'data-analytics',
+      title: 'Datos e Insights',
+      description:
+        'Transformamos tus datos operativos en insights accionables con dashboards inteligentes y reportes automatizados.',
+      icon: 'chart',
+      features: ['Dashboards en tiempo real', 'KPIs automatizados', 'Analisis predictivo', 'Reportes periodicos'],
+    },
+    {
+      id: 'custom-solutions',
+      title: 'Soluciones a Medida',
+      description:
+        'Desarrollamos soluciones personalizadas cuando tu negocio necesita algo que no existe en el mercado. Desde MVPs hasta plataformas completas.',
+      icon: 'code',
+      features: ['MVPs rapidos', 'Plataformas web', 'Apps internas', 'Herramientas de gestion'],
+    },
+  ],
+  en: [
+    {
+      id: 'ai-agents',
+      title: 'AI Agents',
+      description:
+        'We design and deploy intelligent agents that execute tasks, answer queries, and automate complete workflows connected to your existing tools.',
+      icon: 'cpu',
+      features: ['Customer support', 'Lead management', 'Internal support', 'Specialized assistants'],
+    },
+    {
+      id: 'process-automation',
+      title: 'Process Automation',
+      description:
+        'We identify manual and repetitive processes in your operations and automate them with AI to free up time and reduce errors.',
+      icon: 'workflow',
+      features: ['Automated workflows', 'Integrations', 'Smart reports', 'Alerts and notifications'],
+    },
+    {
+      id: 'ai-consulting',
+      title: 'AI Consulting',
+      description:
+        'We help you understand where artificial intelligence can generate real value in your business and design the roadmap to implement it.',
+      icon: 'lightbulb',
+      features: ['Operational diagnosis', 'AI roadmap', 'Training', 'Adoption strategy'],
+    },
+    {
+      id: 'integrations',
+      title: 'Smart Integrations',
+      description:
+        'We connect your existing tools — WhatsApp, Google Workspace, CRMs, ERPs — with AI agents to create unified and efficient workflows.',
+      icon: 'plug',
+      features: ['WhatsApp Business', 'Google Workspace', 'CRMs / ERPs', 'Custom APIs'],
+    },
+    {
+      id: 'data-analytics',
+      title: 'Data & Insights',
+      description:
+        'We transform your operational data into actionable insights with intelligent dashboards and automated reports.',
+      icon: 'chart',
+      features: ['Real-time dashboards', 'Automated KPIs', 'Predictive analytics', 'Periodic reports'],
+    },
+    {
+      id: 'custom-solutions',
+      title: 'Custom Solutions',
+      description:
+        'We develop tailored solutions when your business needs something that does not exist in the market. From MVPs to full platforms.',
+      icon: 'code',
+      features: ['Rapid MVPs', 'Web platforms', 'Internal apps', 'Management tools'],
+    },
+  ],
+};
 
 export const SERVICE_ICON_PATHS: Record<string, string> = {
   cpu: 'M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5M4.5 15.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h9a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 15.75 4.5h-9A2.25 2.25 0 0 0 4.5 6.75v10.5A2.25 2.25 0 0 0 6.75 19.5Zm4.5-9.75a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm4.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z',

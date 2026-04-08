@@ -1,19 +1,26 @@
 ---
+import type { Locale } from '@/i18n/config';
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
 import { PROCESS_STEPS, PROCESS_HEADER } from '../../data/process.data';
 
-const steps = PROCESS_STEPS;
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const header = PROCESS_HEADER[locale];
+const steps = PROCESS_STEPS[locale];
 ---
 
 <Section id="process" padding="lg">
   <Container>
     <div class="text-center mb-16">
       <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest font-bold mb-4" data-reveal-y="30">
-        <span class="forge-gradient-text">{PROCESS_HEADER.eyebrow}</span>
+        <span class="forge-gradient-text">{header.eyebrow}</span>
       </p>
       <h2 class="scroll-reveal opacity-0 text-4xl md:text-6xl font-black text-white" data-reveal-y="30" data-reveal-delay="0.1">
-        {PROCESS_HEADER.title}
+        {header.title}
       </h2>
     </div>
 

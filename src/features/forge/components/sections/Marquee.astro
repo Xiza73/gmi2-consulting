@@ -1,7 +1,13 @@
 ---
+import type { Locale } from '@/i18n/config';
 import { MARQUEE_WORDS } from '../../data/marquee.data';
 
-const words = [...MARQUEE_WORDS];
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const words = [...MARQUEE_WORDS[locale]];
 const marqueeContent = [...words, ...words].join(' \u2022 ') + ' \u2022 ';
 ---
 

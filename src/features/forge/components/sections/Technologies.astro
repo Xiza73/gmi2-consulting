@@ -1,4 +1,5 @@
 ---
+import type { Locale } from '@/i18n/config';
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
 import {
@@ -9,6 +10,13 @@ import {
   TECH_BOTTOM_STATS,
 } from '../../data/technologies.data';
 
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const header = TECHNOLOGIES_HEADER[locale];
+const bottomStats = TECH_BOTTOM_STATS[locale];
 const innerTechs = INNER_TECHS;
 const middleTechs = MIDDLE_TECHS;
 const outerTechs = OUTER_TECHS;
@@ -18,13 +26,13 @@ const outerTechs = OUTER_TECHS;
   <Container>
     <div class="text-center mb-20">
       <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest font-bold mb-4" data-reveal-y="30">
-        <span class="forge-gradient-text">{TECHNOLOGIES_HEADER.eyebrow}</span>
+        <span class="forge-gradient-text">{header.eyebrow}</span>
       </p>
       <h2 class="scroll-reveal opacity-0 text-4xl md:text-6xl font-black text-white mb-6" data-reveal-y="30" data-reveal-delay="0.1">
-        {TECHNOLOGIES_HEADER.title}
+        {header.title}
       </h2>
       <p class="scroll-reveal opacity-0 text-lg text-white/40 max-w-2xl mx-auto" data-reveal-y="20" data-reveal-delay="0.2">
-        {TECHNOLOGIES_HEADER.subtitle}
+        {header.subtitle}
       </p>
     </div>
 
@@ -131,7 +139,7 @@ const outerTechs = OUTER_TECHS;
 
     <!-- Bottom stats -->
     <div class="relative z-20 flex justify-center gap-12 mt-24 scroll-reveal opacity-0" data-reveal-y="20" data-reveal-delay="0.3">
-      {TECH_BOTTOM_STATS.map((stat) => (
+      {bottomStats.map((stat) => (
         <div class="text-center">
           <p class="text-3xl font-black forge-gradient-text">{stat.value}</p>
           <p class="text-sm text-white/40 mt-1">{stat.label}</p>
