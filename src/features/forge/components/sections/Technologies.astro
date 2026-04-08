@@ -88,7 +88,7 @@ const outerTechs = OUTER_TECHS;
               class="forge-orbit-item forge-counter-cw absolute"
               style={`top: ${50 + 32 * Math.sin(rad)}%; left: ${50 + 32 * Math.cos(rad)}%; translate: -50% -50%; --orbit-duration: 120s;`}
             >
-              <div class="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/6 border border-white/12 backdrop-blur-md cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/12">
+              <div class="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/6 border border-white/12 backdrop-blur-md cursor-default transition-all duration-300 hover:bg-white/12">
                 <div class="forge-tech-dot w-2.5 h-2.5 rounded-full shrink-0 shadow-lg" style={`background: ${tech.color}; box-shadow: 0 0 12px ${tech.glow};`}></div>
                 <span class="text-sm font-bold text-white/90 whitespace-nowrap">{tech.name}</span>
                 <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`box-shadow: 0 0 25px ${tech.glow}, inset 0 0 15px ${tech.glow};`}></div>
@@ -108,7 +108,7 @@ const outerTechs = OUTER_TECHS;
               class="forge-orbit-item forge-counter-ccw absolute"
               style={`top: ${50 + 48 * Math.sin(rad)}%; left: ${50 + 48 * Math.cos(rad)}%; translate: -50% -50%; --orbit-duration: 180s;`}
             >
-              <div class="group relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/4 border border-white/8 backdrop-blur-sm cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/10">
+              <div class="group relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/4 border border-white/8 backdrop-blur-sm cursor-default transition-all duration-300 hover:bg-white/10">
                 <div class="forge-tech-dot w-2 h-2 rounded-full shrink-0" style={`background: ${tech.color}; box-shadow: 0 0 10px ${tech.glow};`}></div>
                 <span class="text-xs font-semibold text-white/70 whitespace-nowrap group-hover:text-white/90 transition-colors">{tech.name}</span>
                 <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`box-shadow: 0 0 20px ${tech.glow};`}></div>
@@ -127,7 +127,7 @@ const outerTechs = OUTER_TECHS;
             class="forge-orbit-item forge-float-item absolute z-10"
             style={`top: ${50 + 56 * Math.sin(rad)}%; left: ${50 + 56 * Math.cos(rad)}%; transform: translate(-50%, -50%); --float-duration: ${3.5 + (i * 0.4)}s; --float-delay: ${-i * 0.5}s;`}
           >
-            <div class="group relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/3 border border-white/6 cursor-default transition-all duration-300 hover:scale-110 hover:bg-white/8">
+            <div class="group relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/3 border border-white/6 cursor-default transition-all duration-300 hover:bg-white/8">
               <div class="forge-tech-dot w-1.5 h-1.5 rounded-full shrink-0" style={`background: ${tech.color}; box-shadow: 0 0 8px ${tech.glow};`}></div>
               <span class="text-[11px] font-medium text-white/50 whitespace-nowrap group-hover:text-white/80 transition-colors">{tech.name}</span>
               <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`box-shadow: 0 0 15px ${tech.glow};`}></div>
@@ -259,13 +259,15 @@ const outerTechs = OUTER_TECHS;
       },
     });
 
-    // Hover: elastic pop
+    // Hover: elastic pop on the inner chip (not the orbit wrapper, which handles rotation)
     items.forEach((item) => {
+      const chip = item.querySelector<HTMLElement>(':scope > div');
+      if (!chip) return;
       item.addEventListener('mouseenter', () => {
-        gsap.to(item, { scale: 1.2, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
+        gsap.to(chip, { scale: 1.15, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
       });
       item.addEventListener('mouseleave', () => {
-        gsap.to(item, { scale: 1, duration: 0.5, ease: 'power2.out' });
+        gsap.to(chip, { scale: 1, duration: 0.5, ease: 'power2.out' });
       });
     });
 
