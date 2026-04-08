@@ -79,7 +79,7 @@ const outerTechs = OUTER_TECHS;
         Inner orbit wrapper: rotates the whole group via CSS transform (GPU).
         Each item counter-rotates to keep text upright.
       -->
-      <div class="absolute inset-0 forge-rotate-cw z-10" style="--orbit-duration: 120s;">
+      <div class="absolute inset-0 forge-rotate-cw z-10 pointer-events-none" style="--orbit-duration: 120s;">
         {innerTechs.map((tech, i) => {
           const angle = (i / innerTechs.length) * 360 - 90;
           const rad = (angle * Math.PI) / 180;
@@ -88,10 +88,9 @@ const outerTechs = OUTER_TECHS;
               class="forge-orbit-item forge-counter-cw absolute"
               style={`top: ${50 + 32 * Math.sin(rad)}%; left: ${50 + 32 * Math.cos(rad)}%; translate: -50% -50%; --orbit-duration: 120s;`}
             >
-              <div class="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/6 border border-white/12 backdrop-blur-md cursor-default transition-all duration-300 hover:bg-white/12">
+              <div class="forge-tech-chip relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/6 border border-white/12 backdrop-blur-md cursor-pointer pointer-events-auto" data-glow={tech.glow}>
                 <div class="forge-tech-dot w-2.5 h-2.5 rounded-full shrink-0 shadow-lg" style={`background: ${tech.color}; box-shadow: 0 0 12px ${tech.glow};`}></div>
                 <span class="text-sm font-bold text-white/90 whitespace-nowrap">{tech.name}</span>
-                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`box-shadow: 0 0 25px ${tech.glow}, inset 0 0 15px ${tech.glow};`}></div>
               </div>
             </div>
           );
@@ -99,7 +98,7 @@ const outerTechs = OUTER_TECHS;
       </div>
 
       <!-- Middle orbit wrapper: rotates reverse -->
-      <div class="absolute inset-0 forge-rotate-ccw z-10" style="--orbit-duration: 180s;">
+      <div class="absolute inset-0 forge-rotate-ccw z-10 pointer-events-none" style="--orbit-duration: 180s;">
         {middleTechs.map((tech, i) => {
           const angle = (i / middleTechs.length) * 360 - 60;
           const rad = (angle * Math.PI) / 180;
@@ -108,10 +107,9 @@ const outerTechs = OUTER_TECHS;
               class="forge-orbit-item forge-counter-ccw absolute"
               style={`top: ${50 + 48 * Math.sin(rad)}%; left: ${50 + 48 * Math.cos(rad)}%; translate: -50% -50%; --orbit-duration: 180s;`}
             >
-              <div class="group relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/4 border border-white/8 backdrop-blur-sm cursor-default transition-all duration-300 hover:bg-white/10">
+              <div class="forge-tech-chip relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/4 border border-white/8 backdrop-blur-sm cursor-pointer pointer-events-auto" data-glow={tech.glow}>
                 <div class="forge-tech-dot w-2 h-2 rounded-full shrink-0" style={`background: ${tech.color}; box-shadow: 0 0 10px ${tech.glow};`}></div>
-                <span class="text-xs font-semibold text-white/70 whitespace-nowrap group-hover:text-white/90 transition-colors">{tech.name}</span>
-                <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`box-shadow: 0 0 20px ${tech.glow};`}></div>
+                <span class="text-xs font-semibold text-white/70 whitespace-nowrap">{tech.name}</span>
               </div>
             </div>
           );
@@ -127,10 +125,9 @@ const outerTechs = OUTER_TECHS;
             class="forge-orbit-item forge-float-item absolute z-10"
             style={`top: ${50 + 56 * Math.sin(rad)}%; left: ${50 + 56 * Math.cos(rad)}%; transform: translate(-50%, -50%); --float-duration: ${3.5 + (i * 0.4)}s; --float-delay: ${-i * 0.5}s;`}
           >
-            <div class="group relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/3 border border-white/6 cursor-default transition-all duration-300 hover:bg-white/8">
+            <div class="forge-tech-chip relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/3 border border-white/6 cursor-pointer pointer-events-auto" data-glow={tech.glow}>
               <div class="forge-tech-dot w-1.5 h-1.5 rounded-full shrink-0" style={`background: ${tech.color}; box-shadow: 0 0 8px ${tech.glow};`}></div>
-              <span class="text-[11px] font-medium text-white/50 whitespace-nowrap group-hover:text-white/80 transition-colors">{tech.name}</span>
-              <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`box-shadow: 0 0 15px ${tech.glow};`}></div>
+              <span class="text-[11px] font-medium text-white/50 whitespace-nowrap">{tech.name}</span>
             </div>
           </div>
         );
@@ -259,27 +256,43 @@ const outerTechs = OUTER_TECHS;
       },
     });
 
-    // Hover: elastic pop on the inner chip (not the orbit wrapper, which handles rotation)
-    items.forEach((item) => {
-      const chip = item.querySelector<HTMLElement>(':scope > div');
-      if (!chip) return;
-      item.addEventListener('mouseenter', () => {
-        gsap.to(chip, { scale: 1.15, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
+    // Hover: scale + glow in ONE tween (both happen simultaneously)
+    const chips = system.querySelectorAll<HTMLElement>('.forge-tech-chip');
+    chips.forEach((chip) => {
+      const glow = chip.dataset.glow || 'rgba(236,72,153,0.4)';
+
+      chip.addEventListener('mouseenter', () => {
+        gsap.to(chip, {
+          scale: 1.15,
+          boxShadow: `0 0 25px ${glow}, inset 0 0 12px ${glow}`,
+          backgroundColor: 'rgba(255,255,255,0.12)',
+          duration: 0.35,
+          ease: 'power2.out',
+        });
       });
-      item.addEventListener('mouseleave', () => {
-        gsap.to(chip, { scale: 1, duration: 0.5, ease: 'power2.out' });
+
+      chip.addEventListener('mouseleave', () => {
+        gsap.to(chip, {
+          scale: 1,
+          boxShadow: 'none',
+          backgroundColor: '',
+          duration: 0.4,
+          ease: 'power2.out',
+          clearProps: 'backgroundColor',
+        });
       });
     });
 
     // Random highlight pulse
     function randomPulse() {
-      const idx = Math.floor(Math.random() * items.length);
-      const inner = items[idx].querySelector<HTMLElement>('div');
-      if (!inner) return;
+      const idx = Math.floor(Math.random() * chips.length);
+      const chip = chips[idx];
+      if (!chip) return;
+      const glow = chip.dataset.glow || 'rgba(236,72,153,0.4)';
 
       gsap.timeline()
-        .to(inner, { boxShadow: '0 0 20px rgba(236,72,153,0.4), 0 0 40px rgba(249,115,22,0.2)', duration: 0.5, ease: 'power2.out' })
-        .to(inner, { boxShadow: 'none', duration: 1, ease: 'power2.inOut' });
+        .to(chip, { boxShadow: `0 0 20px ${glow}, 0 0 40px ${glow}`, duration: 0.5, ease: 'power2.out' })
+        .to(chip, { boxShadow: 'none', duration: 1, ease: 'power2.inOut' });
     }
 
     const interval = setInterval(randomPulse, 2500);
