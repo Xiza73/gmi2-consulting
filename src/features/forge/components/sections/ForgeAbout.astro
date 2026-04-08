@@ -2,6 +2,7 @@
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
 import AnimatedCounter from '@components/animations/AnimatedCounter.astro';
+import { ABOUT_CONTENT, ABOUT_STATS } from '../../data/about.data';
 ---
 
 <Section id="about" padding="lg">
@@ -10,22 +11,17 @@ import AnimatedCounter from '@components/animations/AnimatedCounter.astro';
       <!-- Text -->
       <div>
         <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest font-bold mb-4" data-reveal-y="30">
-          <span class="forge-gradient-text">Sobre Nosotros</span>
+          <span class="forge-gradient-text">{ABOUT_CONTENT.eyebrow}</span>
         </p>
         <h2 class="scroll-reveal opacity-0 text-4xl md:text-5xl font-black text-white mb-6 leading-tight" data-reveal-y="30" data-reveal-delay="0.1">
-          Tecnologia con proposito, resultados medibles
+          {ABOUT_CONTENT.title}
         </h2>
         <div class="space-y-4">
-          <p class="scroll-reveal opacity-0 text-white/50 leading-relaxed" data-reveal-y="20" data-reveal-delay="0.2">
-            Somos un equipo de ingenieros, arquitectos y estrategas tecnologicos con mas
-            de una decada de experiencia construyendo productos digitales que transforman
-            negocios.
-          </p>
-          <p class="scroll-reveal opacity-0 text-white/50 leading-relaxed" data-reveal-y="20" data-reveal-delay="0.3">
-            Nuestro enfoque combina excelencia tecnica con vision de negocio. No solo
-            escribimos codigo — diseñamos soluciones que escalan, perduran y generan
-            valor real.
-          </p>
+          {ABOUT_CONTENT.paragraphs.map((paragraph, i) => (
+            <p class="scroll-reveal opacity-0 text-white/50 leading-relaxed" data-reveal-y="20" data-reveal-delay={String(0.2 + i * 0.1)}>
+              {paragraph}
+            </p>
+          ))}
         </div>
       </div>
 
@@ -33,30 +29,14 @@ import AnimatedCounter from '@components/animations/AnimatedCounter.astro';
       <div class="scroll-reveal opacity-0 relative" data-reveal-x="-60">
         <div class="forge-card p-8 bg-linear-to-br from-pink-500/5 to-orange-500/5">
           <div class="grid grid-cols-2 gap-6">
-            <div class="text-center p-4">
-              <span class="text-4xl font-black forge-gradient-text">
-                <AnimatedCounter value={150} suffix="+" />
-              </span>
-              <p class="text-sm text-white/40 mt-1">Proyectos</p>
-            </div>
-            <div class="text-center p-4">
-              <span class="text-4xl font-black forge-gradient-text">
-                <AnimatedCounter value={80} suffix="+" />
-              </span>
-              <p class="text-sm text-white/40 mt-1">Clientes</p>
-            </div>
-            <div class="text-center p-4">
-              <span class="text-4xl font-black forge-gradient-text">
-                <AnimatedCounter value={25} suffix="+" />
-              </span>
-              <p class="text-sm text-white/40 mt-1">Expertos</p>
-            </div>
-            <div class="text-center p-4">
-              <span class="text-4xl font-black forge-gradient-text">
-                <AnimatedCounter value={12} />
-              </span>
-              <p class="text-sm text-white/40 mt-1">Anios</p>
-            </div>
+            {ABOUT_STATS.map((stat) => (
+              <div class="text-center p-4">
+                <span class="text-4xl font-black forge-gradient-text">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                </span>
+                <p class="text-sm text-white/40 mt-1">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

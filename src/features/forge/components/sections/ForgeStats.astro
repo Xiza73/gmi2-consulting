@@ -2,13 +2,13 @@
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
 import AnimatedCounter from '@components/animations/AnimatedCounter.astro';
-import stats from '@/data/stats.json';
+import { STATS } from '../../data/stats.data';
 ---
 
 <Section padding="md">
   <Container>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" data-stagger-grid>
-      {stats.map((stat) => (
+      {STATS.map((stat) => (
         <div class="text-center p-6" data-stagger-item>
           <div class="text-5xl md:text-7xl font-black mb-2">
             <span class="forge-gradient-text">

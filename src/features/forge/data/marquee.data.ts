@@ -1,0 +1,10 @@
+export const MARQUEE_WORDS = [
+  'AUTOMATIZACION',
+  'AGENTES IA',
+  'PROCESOS',
+  'INTEGRACIONES',
+  'PRODUCTIVIDAD',
+  'DATOS',
+  'PYMES',
+  'EFICIENCIA',
+] as const;

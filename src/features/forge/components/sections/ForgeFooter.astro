@@ -1,26 +1,6 @@
 ---
 import Container from '@components/layout/Container.astro';
-
-const footerLinks = {
-  Servicios: [
-    { label: 'Desarrollo Full-Stack', href: '#build' },
-    { label: 'Productos SaaS', href: '#build' },
-    { label: 'Apps Moviles', href: '#build' },
-    { label: 'Consultoria IT', href: '#build' },
-  ],
-  Productos: [
-    { label: 'Plataformas SaaS', href: '#cases' },
-    { label: 'Soluciones Enterprise', href: '#cases' },
-    { label: 'Dashboard Analytics', href: '#cases' },
-    { label: 'Cloud Architecture', href: '#build' },
-  ],
-  Empresa: [
-    { label: 'Nosotros', href: '#about' },
-    { label: 'Casos de Exito', href: '#cases' },
-    { label: 'Tecnologias', href: '#tech' },
-    { label: 'Contacto', href: '#contact' },
-  ],
-};
+import { FOOTER_BRAND, FOOTER_LINKS } from '../../data/footer.data';
 ---
 
 <footer class="pt-16 pb-8 mt-20 border-t-2 border-transparent" style="border-image: linear-gradient(90deg, #ec4899, #f97316, #eab308) 1;">
@@ -28,15 +8,15 @@ const footerLinks = {
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
       <!-- Brand -->
       <div class="col-span-2 md:col-span-1">
-        <a href="/forge" class="text-xl font-black text-white">
-          GMI<span class="forge-gradient-text">2</span>
+        <a href={FOOTER_BRAND.href} class="text-xl font-black text-white">
+          {FOOTER_BRAND.text}<span class="forge-gradient-text">{FOOTER_BRAND.accent}</span>
         </a>
         <p class="text-sm text-white/30 mt-3 leading-relaxed">
-          Consultoria IT y desarrollo de software de clase mundial.
+          {FOOTER_BRAND.tagline}
         </p>
       </div>
 
-      {Object.entries(footerLinks).map(([title, links]) => (
+      {Object.entries(FOOTER_LINKS).map(([title, links]) => (
         <div>
           <h4 class="text-sm font-semibold text-white mb-4">{title}</h4>
           <ul class="space-y-2">

@@ -1,35 +1,36 @@
 ---
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
+import { CTA_CONTENT } from '../../data/cta.data';
 ---
 
 <Section id="contact" padding="xl" class="relative overflow-hidden forge-mesh-bg">
   <Container size="md">
     <div class="text-center scroll-reveal opacity-0" data-reveal-y="40">
       <h2 class="text-5xl md:text-7xl font-black text-white mb-6 leading-[0.95]">
-        ¿Listo para<br />
-        <span class="forge-gradient-text">transformar tu negocio?</span>
+        {CTA_CONTENT.title.line1}<br />
+        <span class="forge-gradient-text">{CTA_CONTENT.title.accent}</span>
       </h2>
 
       <p class="text-lg text-white/50 max-w-xl mx-auto mb-10">
-        Hablemos sobre tu proximo proyecto. Te ayudamos a convertir tu vision en realidad.
+        {CTA_CONTENT.description}
       </p>
 
       <div class="flex flex-wrap justify-center gap-4">
         <a
-          href="mailto:hello@gmi2consulting.com"
+          href={CTA_CONTENT.cta.primary.href}
           class="px-10 py-5 text-lg font-black text-white bg-linear-to-r from-pink-500 via-orange-500 to-yellow-500 rounded-full hover:shadow-xl hover:shadow-pink-500/25 transition-all hover:scale-105"
         >
-          Agendar Reunion
+          {CTA_CONTENT.cta.primary.label}
           <svg class="w-5 h-5 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
         <a
-          href="mailto:hello@gmi2consulting.com"
+          href={CTA_CONTENT.cta.secondary.href}
           class="px-10 py-5 text-lg font-bold text-white border-2 border-white/20 rounded-full hover:border-white/40 backdrop-blur-sm bg-white/5 transition-all"
         >
-          hello@gmi2consulting.com
+          {CTA_CONTENT.cta.secondary.label}
         </a>
       </div>
     </div>

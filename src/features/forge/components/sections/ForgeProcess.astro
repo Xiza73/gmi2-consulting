@@ -1,23 +1,19 @@
 ---
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
+import { PROCESS_STEPS, PROCESS_HEADER } from '../../data/process.data';
 
-const steps = [
-  { number: '01', title: 'Discovery', description: 'Entendemos tu negocio, objetivos y usuarios para definir el camino.' },
-  { number: '02', title: 'Design', description: 'Prototipamos y diseñamos la experiencia perfecta para tus usuarios.' },
-  { number: '03', title: 'Build', description: 'Desarrollamos con tecnologias modernas, testing y CI/CD.' },
-  { number: '04', title: 'Launch', description: 'Desplegamos, monitoreamos y optimizamos continuamente.' },
-];
+const steps = PROCESS_STEPS;
 ---
 
 <Section id="process" padding="lg">
   <Container>
     <div class="text-center mb-16">
       <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest font-bold mb-4" data-reveal-y="30">
-        <span class="forge-gradient-text">Nuestro Proceso</span>
+        <span class="forge-gradient-text">{PROCESS_HEADER.eyebrow}</span>
       </p>
       <h2 class="scroll-reveal opacity-0 text-4xl md:text-6xl font-black text-white" data-reveal-y="30" data-reveal-delay="0.1">
-        Como lo hacemos
+        {PROCESS_HEADER.title}
       </h2>
     </div>
 

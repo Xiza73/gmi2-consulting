@@ -1,52 +1,30 @@
 ---
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
+import {
+  TECHNOLOGIES_HEADER,
+  INNER_TECHS,
+  MIDDLE_TECHS,
+  OUTER_TECHS,
+  TECH_BOTTOM_STATS,
+} from '../../data/technologies.data';
 
-interface TechItem {
-  name: string;
-  color: string;
-  glow: string;
-}
-
-const innerTechs: TechItem[] = [
-  { name: 'React', color: '#61dafb', glow: 'rgba(97,218,251,0.4)' },
-  { name: 'TypeScript', color: '#3178c6', glow: 'rgba(49,120,198,0.4)' },
-  { name: 'Node.js', color: '#68a063', glow: 'rgba(104,160,99,0.4)' },
-  { name: 'Python', color: '#ffd43b', glow: 'rgba(255,212,59,0.4)' },
-];
-
-const middleTechs: TechItem[] = [
-  { name: 'Next.js', color: '#ffffff', glow: 'rgba(255,255,255,0.3)' },
-  { name: 'NestJS', color: '#e0234e', glow: 'rgba(224,35,78,0.4)' },
-  { name: 'Flutter', color: '#02569b', glow: 'rgba(2,86,155,0.4)' },
-  { name: 'GraphQL', color: '#e535ab', glow: 'rgba(229,53,171,0.4)' },
-  { name: 'Tailwind', color: '#38bdf8', glow: 'rgba(56,189,248,0.4)' },
-  { name: 'Prisma', color: '#5a67d8', glow: 'rgba(90,103,216,0.4)' },
-];
-
-const outerTechs: TechItem[] = [
-  { name: 'AWS', color: '#ff9900', glow: 'rgba(255,153,0,0.4)' },
-  { name: 'Docker', color: '#2496ed', glow: 'rgba(36,150,237,0.4)' },
-  { name: 'Kubernetes', color: '#326ce5', glow: 'rgba(50,108,229,0.4)' },
-  { name: 'PostgreSQL', color: '#4169e1', glow: 'rgba(65,105,225,0.4)' },
-  { name: 'MongoDB', color: '#47a248', glow: 'rgba(71,162,72,0.4)' },
-  { name: 'Redis', color: '#dc382d', glow: 'rgba(220,56,45,0.4)' },
-  { name: 'CI/CD', color: '#f97316', glow: 'rgba(249,115,22,0.4)' },
-  { name: 'React Native', color: '#61dafb', glow: 'rgba(97,218,251,0.4)' },
-];
+const innerTechs = INNER_TECHS;
+const middleTechs = MIDDLE_TECHS;
+const outerTechs = OUTER_TECHS;
 ---
 
 <Section id="tech" padding="lg">
   <Container>
     <div class="text-center mb-20">
       <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest font-bold mb-4" data-reveal-y="30">
-        <span class="forge-gradient-text">Stack Tecnologico</span>
+        <span class="forge-gradient-text">{TECHNOLOGIES_HEADER.eyebrow}</span>
       </p>
       <h2 class="scroll-reveal opacity-0 text-4xl md:text-6xl font-black text-white mb-6" data-reveal-y="30" data-reveal-delay="0.1">
-        Nuestras Herramientas
+        {TECHNOLOGIES_HEADER.title}
       </h2>
       <p class="scroll-reveal opacity-0 text-lg text-white/40 max-w-2xl mx-auto" data-reveal-y="20" data-reveal-delay="0.2">
-        Dominamos las tecnologias mas demandadas del mercado para construir soluciones robustas y escalables.
+        {TECHNOLOGIES_HEADER.subtitle}
       </p>
     </div>
 
@@ -153,18 +131,12 @@ const outerTechs: TechItem[] = [
 
     <!-- Bottom stats -->
     <div class="relative z-20 flex justify-center gap-12 mt-24 scroll-reveal opacity-0" data-reveal-y="20" data-reveal-delay="0.3">
-      <div class="text-center">
-        <p class="text-3xl font-black forge-gradient-text">18+</p>
-        <p class="text-sm text-white/40 mt-1">Tecnologias</p>
-      </div>
-      <div class="text-center">
-        <p class="text-3xl font-black forge-gradient-text">5</p>
-        <p class="text-sm text-white/40 mt-1">Categorias</p>
-      </div>
-      <div class="text-center">
-        <p class="text-3xl font-black forge-gradient-text">100%</p>
-        <p class="text-sm text-white/40 mt-1">Full-Stack</p>
-      </div>
+      {TECH_BOTTOM_STATS.map((stat) => (
+        <div class="text-center">
+          <p class="text-3xl font-black forge-gradient-text">{stat.value}</p>
+          <p class="text-sm text-white/40 mt-1">{stat.label}</p>
+        </div>
+      ))}
     </div>
   </Container>
 </Section>

@@ -1,5 +1,7 @@
 ---
-const words = ['SOFTWARE', 'SAAS', 'MOBILE', 'CLOUD', 'DEVOPS', 'FULL-STACK', 'AI', 'WEB'];
+import { MARQUEE_WORDS } from '../../data/marquee.data';
+
+const words = [...MARQUEE_WORDS];
 const marqueeContent = [...words, ...words].join(' \u2022 ') + ' \u2022 ';
 ---
 

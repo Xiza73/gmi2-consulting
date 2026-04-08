@@ -1,22 +1,22 @@
 ---
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
-import testimonials from '@/data/testimonials.json';
+import { TESTIMONIALS, TESTIMONIALS_HEADER } from '../../data/testimonials.data';
 ---
 
 <Section id="testimonials" padding="lg">
   <Container>
     <div class="text-center mb-16">
       <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest font-bold mb-4" data-reveal-y="30">
-        <span class="forge-gradient-text">Testimonios</span>
+        <span class="forge-gradient-text">{TESTIMONIALS_HEADER.eyebrow}</span>
       </p>
       <h2 class="scroll-reveal opacity-0 text-4xl md:text-6xl font-black text-white" data-reveal-y="30" data-reveal-delay="0.1">
-        Lo que dicen nuestros <span class="forge-gradient-text">clientes</span>
+        {TESTIMONIALS_HEADER.title}<span class="forge-gradient-text">{TESTIMONIALS_HEADER.titleAccent}</span>
       </h2>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger-grid>
-      {testimonials.slice(0, 6).map((t) => (
+      {TESTIMONIALS.slice(0, 6).map((t) => (
         <div class="forge-card p-8 flex flex-col" data-stagger-item>
           {/* Quote icon */}
           <svg class="w-8 h-8 text-pink-500/30 mb-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
