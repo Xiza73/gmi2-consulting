@@ -1,0 +1,23 @@
+---
+import type { Locale } from '@/i18n/config';
+import { getAlternateLocale } from '@/i18n/utils';
+import { UI } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const alternate = getAlternateLocale(locale);
+const href = alternate === 'en' ? '/en' : '/';
+const label = UI[alternate].languageLabel;
+---
+
+<a
+  href={href}
+  data-astro-prefetch
+  class="inline-flex items-center px-3 py-1 text-sm font-bold text-white/60 border border-white/15 rounded-full hover:text-white hover:border-white/40 transition-all"
+>
+  {label}
+</a>

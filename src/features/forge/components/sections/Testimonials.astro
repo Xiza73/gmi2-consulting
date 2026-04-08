@@ -1,0 +1,54 @@
+---
+import type { Locale } from '@/i18n/config';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import { TESTIMONIALS, TESTIMONIALS_HEADER } from '../../data/testimonials.data';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const header = TESTIMONIALS_HEADER[locale];
+const testimonials = TESTIMONIALS[locale];
+---
+
+<Section id="testimonials" padding="lg">
+  <Container>
+    <div class="text-center mb-16">
+      <p class="scroll-reveal opacity-0 text-sm uppercase tracking-widest font-bold mb-4" data-reveal-y="30">
+        <span class="forge-gradient-text">{header.eyebrow}</span>
+      </p>
+      <h2 class="scroll-reveal opacity-0 text-4xl md:text-6xl font-black text-white" data-reveal-y="30" data-reveal-delay="0.1">
+        {header.title}<span class="forge-gradient-text">{header.titleAccent}</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger-grid>
+      {testimonials.slice(0, 6).map((t) => (
+        <div class="forge-card p-8 flex flex-col" data-stagger-item>
+          {/* Quote icon */}
+          <svg class="w-8 h-8 text-pink-500/30 mb-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11h4v10H0z" />
+          </svg>
+
+          {/* Quote */}
+          <p class="text-white/70 text-sm leading-relaxed flex-1 mb-6">
+            "{t.quote}"
+          </p>
+
+          {/* Author */}
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-linear-to-br from-pink-500 to-orange-500 flex items-center justify-center text-white font-bold text-sm">
+              {t.author.split(' ').map((n: string) => n[0]).join('')}
+            </div>
+            <div>
+              <p class="text-sm font-bold text-white">{t.author}</p>
+              <p class="text-xs text-white/40">{t.role} — {t.company}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

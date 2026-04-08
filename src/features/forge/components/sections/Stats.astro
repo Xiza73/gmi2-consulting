@@ -1,0 +1,31 @@
+---
+import type { Locale } from '@/i18n/config';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import AnimatedCounter from '@components/animations/AnimatedCounter.astro';
+import { STATS } from '../../data/stats.data';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const stats = STATS[locale];
+---
+
+<Section padding="md">
+  <Container>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" data-stagger-grid>
+      {stats.map((stat) => (
+        <div class="text-center p-6" data-stagger-item>
+          <div class="text-5xl md:text-7xl font-black mb-2">
+            <span class="forge-gradient-text">
+              <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+            </span>
+          </div>
+          <p class="text-sm text-white/40 uppercase tracking-wider font-medium">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

@@ -1,0 +1,25 @@
+---
+import type { Locale } from '@/i18n/config';
+import { MARQUEE_WORDS } from '../../data/marquee.data';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const words = [...MARQUEE_WORDS[locale]];
+const marqueeContent = [...words, ...words].join(' \u2022 ') + ' \u2022 ';
+---
+
+<section class="py-12 overflow-hidden border-y border-white/5">
+  <div class="forge-marquee">
+    <div class="forge-marquee-track">
+      <span class="text-6xl md:text-8xl font-black text-white/5 uppercase tracking-tighter whitespace-nowrap px-4">
+        {marqueeContent}
+      </span>
+      <span class="text-6xl md:text-8xl font-black text-white/5 uppercase tracking-tighter whitespace-nowrap px-4">
+        {marqueeContent}
+      </span>
+    </div>
+  </div>
+</section>

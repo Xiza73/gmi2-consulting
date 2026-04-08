@@ -1,0 +1,36 @@
+---
+import type { Locale } from '@/i18n/config';
+import Container from '@components/layout/Container.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { NAV_BRAND, NAV_CONTENT } from '../data/nav.data';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = NAV_CONTENT[locale];
+---
+
+<nav class="forge-nav fixed top-0 left-0 right-0 z-50">
+  <Container>
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <a href={NAV_BRAND.href} class="text-xl font-black tracking-tight text-white">
+        {NAV_BRAND.text}<span class="forge-gradient-text">{NAV_BRAND.accent}</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        {content.links.map((link) => (
+          <a href={link.href} class="text-sm text-white/60 hover:text-white transition-colors font-medium">{link.label}</a>
+        ))}
+        <LanguageSwitcher locale={locale} />
+        <a
+          href={content.cta.href}
+          class="px-5 py-2 text-sm font-bold text-white bg-linear-to-r from-pink-500 to-orange-500 rounded-full hover:shadow-lg hover:shadow-pink-500/25 transition-all"
+        >
+          {content.cta.label}
+        </a>
+      </div>
+    </div>
+  </Container>
+</nav>
