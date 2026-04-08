@@ -12,7 +12,7 @@ const { locale } = Astro.props;
 const content = NAV_CONTENT[locale];
 ---
 
-<nav class="forge-nav fixed top-0 left-0 right-0 z-50" transition:persist>
+<nav class="forge-nav fixed top-0 left-0 right-0 z-50">
   <Container>
     <div class="flex items-center justify-between h-16 md:h-20">
       <a href={NAV_BRAND.href} class="text-xl font-black tracking-tight text-white">
