@@ -92,7 +92,7 @@ function Blob() {
   );
 }
 
-export default function PrismBlob() {
+export default function HeroBlob() {
   return (
     <Canvas
       camera={{ position: [0, 0, 3.5], fov: 40 }}

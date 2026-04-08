@@ -1,12 +1,12 @@
 ---
-import PrismBlob from '@features/prism/components/three/PrismBlob';
+import HeroBlob from '@components/three/HeroBlob';
 import { HERO_CONTENT } from '../../data/hero.data';
 ---
 
 <section class="relative min-h-screen flex items-center overflow-hidden forge-mesh-bg">
   <!-- 3D Blob — full viewport background -->
   <div class="absolute inset-0">
-    <PrismBlob client:only="react" />
+    <HeroBlob client:only="react" />
   </div>
 
   <!-- Dark vignette for text readability -->
