@@ -79,9 +79,11 @@ function Blob() {
 
   return (
     <mesh ref={meshRef}>
-      {/* Reduced segments: 64x16 instead of 200x40 — visually identical
-          under the distort shader, ~87% fewer triangles (≈2k vs ≈16k). */}
-      <torusKnotGeometry args={[0.8, 0.3, 64, 16]} />
+      {/* Middle ground: 160x24 instead of original 200x40.
+          Smooth enough that the distort shader's per-frame vertex
+          displacement doesn't reveal facets, while still ~52% fewer
+          triangles than the original (≈7.7k vs ≈16k). */}
+      <torusKnotGeometry args={[0.8, 0.3, 160, 24]} />
       <MeshDistortMaterial
         color="#ec4899"
         roughness={0.05}
