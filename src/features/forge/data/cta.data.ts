@@ -17,6 +17,8 @@ export const CTA_CONTENT: LocaleMap<CtaContent> = {
       heading: 'Escribinos',
       fallback: 'O escribinos directamente',
       successMessage: '¡Gracias! Te respondemos a la brevedad.',
+      errorMessage: 'Algo salio mal. Intentalo de nuevo o escribinos por email.',
+      subject: 'Nuevo contacto desde GMI2 Landing',
     },
   },
   en: {
@@ -34,6 +36,8 @@ export const CTA_CONTENT: LocaleMap<CtaContent> = {
       heading: 'Get in touch',
       fallback: 'Or email us directly',
       successMessage: 'Thank you! We will get back to you shortly.',
+      errorMessage: 'Something went wrong. Please try again or email us directly.',
+      subject: 'New contact from GMI2 Landing',
     },
   },
 };

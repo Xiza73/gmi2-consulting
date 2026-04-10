@@ -156,6 +156,8 @@ export interface CtaForm {
   readonly heading: string;
   readonly fallback: string;
   readonly successMessage: string;
+  readonly errorMessage: string;
+  readonly subject: string;
 }
 
 export interface CtaContent {
