@@ -39,12 +39,16 @@
 /* Global Resets */
 html {
   scroll-behavior: smooth;
+  /* Dark background so the scrollbar track / scrollbar gutter blends with
+     the dark theme instead of flashing white on the right edge. */
+  background-color: #0f0f0f;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  background-color: #0f0f0f;
 }
 
 ::selection {

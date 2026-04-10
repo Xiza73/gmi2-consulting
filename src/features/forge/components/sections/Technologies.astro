@@ -10,6 +10,21 @@ import {
   TECH_BOTTOM_STATS,
 } from '../../data/technologies.data';
 
+// Mobile marquee rows — shuffle the 18 techs across 4 rows so each row
+// has a visually varied mix (not sorted by category). Rows alternate
+// scroll direction + speed for an organic, non-robotic feel.
+const allTechs = [...INNER_TECHS, ...MIDDLE_TECHS, ...OUTER_TECHS];
+const mobileRows = [
+  // Row 1 → scroll left, fastest
+  [allTechs[0], allTechs[6], allTechs[13], allTechs[4], allTechs[16]],
+  // Row 2 → scroll right, medium
+  [allTechs[1], allTechs[12], allTechs[9], allTechs[17], allTechs[2]],
+  // Row 3 → scroll left, slow
+  [allTechs[3], allTechs[15], allTechs[10], allTechs[8]],
+  // Row 4 → scroll right, medium-fast
+  [allTechs[5], allTechs[11], allTechs[14], allTechs[7]],
+].map((row) => row.filter(Boolean));
+
 interface Props {
   locale: Locale;
 }
@@ -36,8 +51,10 @@ const outerTechs = OUTER_TECHS;
       </p>
     </div>
 
-    <!-- Orbit System -->
-    <div class="relative w-full max-w-3xl mx-auto aspect-square scroll-reveal opacity-0" data-reveal-y="40" id="forge-orbit-system">
+    <!-- Orbit System — desktop only (>= md).
+         On mobile the orbit radii and chip widths don't fit the viewport,
+         so chips get clipped. A flex-wrap grid is used instead below. -->
+    <div class="relative w-full max-w-3xl mx-auto aspect-square scroll-reveal opacity-0 hidden md:block" data-reveal-y="40" id="forge-orbit-system">
 
       <!-- Orbit rings — solid -->
       <div class="absolute inset-[32%] rounded-full border border-white/8 shadow-[0_0_40px_rgba(236,72,153,0.05)] forge-ring-inner"></div>
@@ -134,6 +151,39 @@ const outerTechs = OUTER_TECHS;
       })}
     </div>
 
+    <!-- Mobile-only layout: 4 infinite marquees, alternating directions,
+         varied speeds. No center orb. Pure CSS animation, zero JS cost.
+         Each row's chip list is duplicated inline so `translateX(-50%)`
+         produces a seamless loop. -->
+    <div class="md:hidden scroll-reveal opacity-0 -mx-4 sm:-mx-6" data-reveal-y="30" id="forge-tech-mobile">
+      {mobileRows.map((row, rowIdx) => {
+        const directions = ['left', 'right', 'left', 'right'] as const;
+        const durations = ['32s', '40s', '48s', '36s'];
+        const direction = directions[rowIdx] ?? 'left';
+        const duration = durations[rowIdx] ?? '40s';
+        // Duplicate the row twice for a seamless loop.
+        const doubled = [...row, ...row];
+        return (
+          <div class="forge-tech-marquee overflow-hidden py-2">
+            <div
+              class={`forge-tech-marquee-track forge-tech-marquee-${direction} flex gap-3 w-max`}
+              style={`animation-duration: ${duration};`}
+            >
+              {doubled.map((tech, i) => (
+                <div
+                  class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/6 border border-white/12 backdrop-blur-md shrink-0"
+                  aria-hidden={i >= row.length ? 'true' : undefined}
+                >
+                  <div class="forge-tech-dot w-2 h-2 rounded-full shrink-0" style={`background: ${tech.color}; box-shadow: 0 0 10px ${tech.glow};`}></div>
+                  <span class="text-xs font-semibold text-white/85 whitespace-nowrap">{tech.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
     <!-- Bottom stats -->
     <div class="relative z-20 flex justify-center gap-12 mt-24 scroll-reveal opacity-0" data-reveal-y="20" data-reveal-delay="0.3">
       {bottomStats.map((stat) => (
@@ -206,12 +256,42 @@ const outerTechs = OUTER_TECHS;
     50% { transform: scale(1.05); box-shadow: 0 25px 60px -8px rgba(236,72,153,0.5), 0 0 80px rgba(249,115,22,0.15); }
   }
 
+  /* Mobile marquee rows — infinite horizontal scroll.
+     Content is duplicated inline so translateX(-50%) loops seamlessly. */
+  .forge-tech-marquee-track {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+  .forge-tech-marquee-left {
+    animation-name: forge-tech-marquee-l;
+  }
+  .forge-tech-marquee-right {
+    animation-name: forge-tech-marquee-r;
+  }
+
+  @keyframes forge-tech-marquee-l {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes forge-tech-marquee-r {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+
+  /* Edge fade mask — fades chips in/out at the sides instead of a hard cut. */
+  .forge-tech-marquee {
+    mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .forge-ring-inner, .forge-ring-middle, .forge-ring-outer,
     .forge-rotate-cw, .forge-rotate-ccw,
     .forge-counter-cw, .forge-counter-ccw,
-    .forge-float-item, .forge-tech-dot, .forge-center-orb {
+    .forge-float-item, .forge-tech-dot, .forge-center-orb,
+    .forge-tech-marquee-track {
       animation: none !important;
     }
   }

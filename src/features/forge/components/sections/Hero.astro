@@ -12,8 +12,15 @@ const content = HERO_CONTENT[locale];
 ---
 
 <section class="relative min-h-screen flex items-center overflow-hidden forge-mesh-bg">
-  <!-- 3D Blob — full viewport background -->
-  <div class="absolute inset-0">
+  <!-- Mobile fallback: animated CSS gradient mesh — zero JS, zero WebGL.
+       Visible on screens < 768px. The HeroBlob React wrapper will also
+       render `null` on mobile so Three.js chunks are never imported. -->
+  <div class="absolute inset-0 md:hidden forge-hero-fallback" aria-hidden="true"></div>
+
+  <!-- 3D Blob — the component itself gates on a media query and
+       lazy-imports Three.js only when the viewport is md+, so mobile
+       devices never pay the bundle/RAM cost. -->
+  <div class="absolute inset-0 hidden md:block">
     <HeroBlob client:only="react" />
   </div>
 
