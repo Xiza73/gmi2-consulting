@@ -155,7 +155,7 @@ const outerTechs = OUTER_TECHS;
          varied speeds. No center orb. Pure CSS animation, zero JS cost.
          Each row's chip list is duplicated inline so `translateX(-50%)`
          produces a seamless loop. -->
-    <div class="md:hidden scroll-reveal opacity-0 -mx-4 sm:-mx-6" data-reveal-y="30" id="forge-tech-mobile">
+    <div class="md:hidden -mx-4 sm:-mx-6" id="forge-tech-mobile">
       {mobileRows.map((row, rowIdx) => {
         const directions = ['left', 'right', 'left', 'right'] as const;
         const durations = ['32s', '40s', '48s', '36s'];
@@ -171,7 +171,7 @@ const outerTechs = OUTER_TECHS;
             >
               {doubled.map((tech, i) => (
                 <div
-                  class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/6 border border-white/12 backdrop-blur-md shrink-0"
+                  class="forge-tech-mobile-chip flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/6 border border-white/12 backdrop-blur-md shrink-0 opacity-0"
                   aria-hidden={i >= row.length ? 'true' : undefined}
                 >
                   <div class="forge-tech-dot w-2 h-2 rounded-full shrink-0" style={`background: ${tech.color}; box-shadow: 0 0 10px ${tech.glow};`}></div>
@@ -304,11 +304,36 @@ const outerTechs = OUTER_TECHS;
   gsap.registerPlugin(ScrollTrigger);
 
   function initForgeTech() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Mobile marquee chips: staggered fade-in on scroll.
+    // Runs independently of the desktop orbit system (mobile hides it).
+    const mobileContainer = document.getElementById('forge-tech-mobile');
+    if (mobileContainer) {
+      const mobileChips = mobileContainer.querySelectorAll<HTMLElement>('.forge-tech-mobile-chip');
+      if (reducedMotion) {
+        gsap.set(mobileChips, { opacity: 1 });
+      } else if (mobileChips.length > 0) {
+        ScrollTrigger.create({
+          trigger: mobileContainer,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => {
+            gsap.to(mobileChips, {
+              opacity: 1,
+              duration: 0.5,
+              stagger: { each: 0.03, from: 'start' },
+              ease: 'power2.out',
+            });
+          },
+        });
+      }
+    }
+
     const system = document.getElementById('forge-orbit-system');
     if (!system) return;
 
     const items = system.querySelectorAll<HTMLElement>('.forge-orbit-item');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Randomize dot pulse delays
     items.forEach((item) => {
